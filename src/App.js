@@ -1,25 +1,58 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import axios from "axios";
+import {BrowserRouter, Router, Route, NavLink, Routes} from "react-router-dom";
+import LeaguesHomePage from "./LeaguesHomePage";
+import TeamInformation from "./TeamInformation";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+
+    state = {
+        domain: 'https://app.seker.live/fm1/',
+        LeaguesList: [],
+
+    }
+
+    componentDidMount() {
+        this.getLeagues();
+    }
+
+    getLeagues = () => {
+        axios.get(this.state.domain + 'leagues')
+            .then((response) => {
+                this.setState(this.state.LeaguesList = response.data)
+            });
+    }
+
+    chooseTeam = (league) => {
+        alert(league.name)
+    }
+
+
+    render() {
+        return (
+            <div className="Main">
+                <div className="Title">
+                    <label> Football </label>
+                </div>
+                <table>
+                    {this.state.LeaguesList.map((league, index) => {
+                        return (
+                            <tr onClick={this.chooseTeam}>
+                                <TeamInformation
+                                    id={league.id}
+                                    name={league.name}
+                                />
+                            </tr>
+
+                        )
+                    })}
+
+                </table>
+            </div>
+        );
+    }
 }
 
 export default App;
