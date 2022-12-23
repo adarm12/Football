@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import axios from "axios";
+import axios, {formToJSON} from "axios";
 import {BrowserRouter, Router, Route, NavLink, Routes} from "react-router-dom";
 import LeaguesHomePage from "./LeaguesHomePage";
 import TeamInformation from "./TeamInformation";
@@ -11,7 +11,7 @@ class App extends React.Component {
     state = {
         domain: 'https://app.seker.live/fm1/',
         LeaguesList: [],
-
+        team: 1,
     }
 
     componentDidMount() {
@@ -39,16 +39,15 @@ class App extends React.Component {
                 <table>
                     {this.state.LeaguesList.map((league, index) => {
                         return (
-                            <tr onClick={this.chooseTeam}>
+                            <tr>
                                 <TeamInformation
                                     id={league.id}
                                     name={league.name}
                                 />
                             </tr>
-
                         )
-                    })}
-
+                    })
+                    }
                 </table>
             </div>
         );
