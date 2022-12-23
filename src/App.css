@@ -20,11 +20,12 @@ body {
 
 
 td, tr {
-    width: 80px;
-    height: 60px;
+    width: auto;
+    height: auto;
     text-align: center;
     border: 1px solid black;
     padding: 5px
+
 }
 
 
