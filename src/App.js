@@ -53,13 +53,13 @@ class App extends React.Component {
                 <table>
                     {this.state.teamList.map((league, index) => {
                         return (
-                            <tr>
+                            <td>
                                 {league.name}
                                 {/*<TeamInformation*/}
                                 {/*    id={league.id}*/}
                                 {/*    name={league.name}*/}
                                 {/*/>*/}
-                            </tr>
+                            </td>
                         )
                     })
                     }

@@ -3,7 +3,6 @@ function TeamInformation(prop) {
         <div>
             {prop.name}
         </div>
-
     )
 }
 
