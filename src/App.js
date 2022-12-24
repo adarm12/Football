@@ -60,6 +60,12 @@ class App extends React.Component {
                     })
                     }
                 </table>
+                <BrowserRouter>
+                    <NavLink to={"/TeamInformation"}>{this.state.leagueName}</NavLink>
+                    <Routes>
+                        <Route path={"/TeamInformation"} element={<TeamInformation/>}/>>
+                    </Routes>
+                </BrowserRouter>
             </div>
         );
     }
