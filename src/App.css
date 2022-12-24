@@ -36,3 +36,7 @@ table {
     border: 1px solid black;
     box-shadow: 0 -10px 5px rgb(112, 196, 121);
 }
+
+NavLink {
+    color: black;
+}

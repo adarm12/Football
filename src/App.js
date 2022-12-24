@@ -53,7 +53,12 @@ class App extends React.Component {
                             //onClick={() => alert(league.name)}
                             <tr onClick={() => this.getTeam(league.id, league.name)}>
                                 <td>
-                                    {league.name}
+                                    <BrowserRouter>
+                                        <NavLink to={"/teamsInformation"}>{league.name}</NavLink>
+                                        <Routes>
+                                            <Route path={"/"} element={<TeamInformation/>}/>
+                                        </Routes>
+                                    </BrowserRouter>
                                 </td>
                             </tr>
                         )
