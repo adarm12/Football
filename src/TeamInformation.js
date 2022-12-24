@@ -1,11 +1,18 @@
 import React from "react";
+import axios from "axios";
+import {BrowserRouter, Router, Route, NavLink, Routes} from "react-router-dom";
 
-function TeamInformation(props) {
-    return(
-        <div>
-            הצגת הליגה
-        </div>
-    )
+class TeamInformation extends React.Component {
+
+    render() {
+        return (
+            <div>
+                hi
+            </div>
+        );
+    }
+
+
 }
 
 
