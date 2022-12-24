@@ -33,7 +33,7 @@ class App extends React.Component {
         this.state.leagueName = name
         axios.get(this.state.domain + '/teams/' + this.state.teamId)
             .then((response) => {
-                this.setState(this.state.teamList = response.data)
+                this.setState(this.state.leaguesList = response.data)
                 this.setState(this.state.description = "Those are the groups in the " + this.state.leagueName + " league:")
             })
     }
@@ -50,7 +50,6 @@ class App extends React.Component {
                 <table>
                     {this.state.leaguesList.map((league, index) => {
                         return (
-                            //onClick={() => alert(league.name)}
                             <tr onClick={() => this.getTeam(league.id, league.name)}>
                                 <td>
                                     {league.name}
@@ -60,12 +59,6 @@ class App extends React.Component {
                     })
                     }
                 </table>
-                <BrowserRouter>
-                    <NavLink to={"/TeamInformation"}>{this.state.leagueName}</NavLink>
-                    <Routes>
-                        <Route path={"/TeamInformation"} element={<TeamInformation/>}/>>
-                    </Routes>
-                </BrowserRouter>
             </div>
         );
     }
