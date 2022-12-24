@@ -13,8 +13,8 @@ class App extends React.Component {
         leaguesList: [],
         teamList: [],
         teamId: 0,
-        leagueName: "spanish",
-        description: "",
+        leagueName: "",
+        description: "Those are the existing leagues:",
     }
 
     componentDidMount() {
