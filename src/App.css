@@ -1,9 +1,13 @@
 
-.Main {
-
-    /*background-image: url("LeagueBackground.jpg")*/
-    /*background: greenyellow;*/
+.App {
+    background-image: url("background.jpg")
 }
+
+/*.Main {*/
+
+/*    background-image: url("background.jpg")*/
+/*    !*background: greenyellow;*!*/
+/*}*/
 
 .Title {
     font-size: 50px;

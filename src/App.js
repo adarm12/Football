@@ -8,57 +8,22 @@ import TeamInformation from "./TeamInformation";
 
 class App extends React.Component {
 
-    state = {
-        domain: 'https://app.seker.live/fm1/',
-        leaguesList: [],
-        teamList: [],
-        teamId: 0,
-        leagueName: "",
-        description: "Those are the existing leagues:",
-    }
-
-    componentDidMount() {
-        this.getLeagues();
-    }
-
-    getLeagues = () => {
-        axios.get(this.state.domain + 'leagues')
-            .then((response) => {
-                this.setState(this.state.leaguesList = response.data)
-            });
-    }
-
-    getTeam = (id, name) => {
-        this.state.teamId = id
-        this.state.leagueName = name
-        axios.get(this.state.domain + '/teams/' + this.state.teamId)
-            .then((response) => {
-                this.setState(this.state.leaguesList = response.data)
-                this.setState(this.state.description = "Those are the groups in the " + this.state.leagueName + " league:")
-            })
-    }
+    state = {}
 
     render() {
         return (
-            <div className="Main">
+            <div>
                 <div className="Title">
                     <label> Football </label>
                 </div>
-                <div>
-                    {this.state.description}
-                </div>
-                <table>
-                    {this.state.leaguesList.map((league, index) => {
-                        return (
-                            <tr onClick={() => this.getTeam(league.id, league.name)}>
-                                <td>
-                                    {league.name}
-                                </td>
-                            </tr>
-                        )
-                    })
-                    }
-                </table>
+
+                <BrowserRouter>
+                    <NavLink to={"/LeaguesHomePage"}> HomePage </NavLink>
+                    <Routes>
+                        <Route path={"/LeaguesHomePage"} element={<LeaguesHomePage/>}/>
+                    </Routes>
+
+                </BrowserRouter>
             </div>
         );
     }
