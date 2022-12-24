@@ -20,10 +20,10 @@ class App extends React.Component {
                 </div>
 
                 <BrowserRouter>
-                    <NavLink to={"/LeaguesHomePage"}>HomePage</NavLink>
-                    <NavLink to={"/GeneralStatistics"}>GeneralStatistics</NavLink>
-                    <NavLink to={"/LeagueResultsHistory"}>LeagueResultsHistory</NavLink>
-                    <NavLink to={"/TopScorersTable"}>TopScorersTable</NavLink>
+                    <NavLink style={{margin: "30px"}} to={"/LeaguesHomePage"}>HomePage</NavLink>
+                    <NavLink style={{margin: "30px"}} to={"/GeneralStatistics"}>GeneralStatistics</NavLink>
+                    <NavLink style={{margin: "30px"}} to={"/LeagueResultsHistory"}>LeagueResultsHistory</NavLink>
+                    <NavLink style={{margin: "30px"}} to={"/TopScorersTable"}>TopScorersTable</NavLink>
 
                     <Routes>
                         <Route path={"/LeaguesHomePage"} element={<LeaguesHomePage/>}/>
