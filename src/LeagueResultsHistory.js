@@ -4,7 +4,7 @@ function LeagueResultsHistory()
 {
     return (
         <div>
-            LeagueResultsHistory
+            League results history
         </div>
     )
 

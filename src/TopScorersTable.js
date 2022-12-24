@@ -1,16 +1,12 @@
 import React from "react";
 
-class TopScorersTable extends React.Component {
+function TopScorersTable() {
+    return (
+        <div>
+            Top scorers table
+        </div>
 
-    render() {
-        return (
-            <div>
-                TopScorersTable
-            </div>
-
-        );
-    }
-
+    );
 }
 
 
