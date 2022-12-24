@@ -12,7 +12,7 @@ class App extends React.Component {
         domain: 'https://app.seker.live/fm1/',
         leaguesList: [],
         teamList: [],
-        team: 0,
+        teamId: 0,
         leagueName: "spanish",
         description: "",
     }
@@ -28,9 +28,10 @@ class App extends React.Component {
             });
     }
 
-    getTeam = (index) => {
-        alert(index)
-        axios.get(this.state.domain + '/teams/' + index)
+    getTeam = (id, name) => {
+        this.state.teamId = id
+        this.state.leagueName = name
+        axios.get(this.state.domain + '/teams/' + this.state.teamId)
             .then((response) => {
                 this.setState(this.state.teamList = response.data)
                 this.setState(this.state.description = "Those are the groups in the " + this.state.leagueName + " league:")
@@ -50,7 +51,7 @@ class App extends React.Component {
                     {this.state.leaguesList.map((league, index) => {
                         return (
                             //onClick={() => alert(league.name)}
-                            <tr onClick={() => this.getTeam(league.id)}>
+                            <tr onClick={() => this.getTeam(league.id, league.name)}>
                                 <td>
                                     {league.name}
                                 </td>
