@@ -1,8 +1,9 @@
-import React from "react";
-
-function playersList()
-{
-
+function playersList() {
+    return (
+        <div>
+            playersList
+        </div>
+    )
 }
 
-export default playersList();
+export default playersList;
