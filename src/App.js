@@ -10,36 +10,32 @@ class App extends React.Component {
 
     state = {
         domain: 'https://app.seker.live/fm1/',
-        LeaguesList: [],
+        leaguesList: [],
         teamList: [],
-        team: 1,
+        team: 0,
         leagueName: "spanish",
         description: "",
     }
 
     componentDidMount() {
-        this.getTeam();
+        this.getLeagues();
     }
 
     getLeagues = () => {
         axios.get(this.state.domain + 'leagues')
             .then((response) => {
-                this.setState(this.state.LeaguesList = response.data)
+                this.setState(this.state.leaguesList = response.data)
             });
     }
 
-    getTeam = () => {
-        axios.get(this.state.domain + '/teams/' + this.state.team)
+    getTeam = (index) => {
+        alert(index)
+        axios.get(this.state.domain + '/teams/' + index)
             .then((response) => {
                 this.setState(this.state.teamList = response.data)
                 this.setState(this.state.description = "Those are the groups in the " + this.state.leagueName + " league:")
             })
     }
-
-    chooseTeam = (league) => {
-        alert(league.name)
-    }
-
 
     render() {
         return (
@@ -51,15 +47,12 @@ class App extends React.Component {
                     {this.state.description}
                 </div>
                 <table>
-                    {this.state.teamList.map((league, index) => {
+                    {this.state.leaguesList.map((league, index) => {
                         return (
-                            <tr>
+                            //onClick={() => alert(league.name)}
+                            <tr onClick={() => this.getTeam(league.id)}>
                                 <td>
-                                {league.name}
-                                {/*<TeamInformation*/}
-                                {/*    id={league.id}*/}
-                                {/*    name={league.name}*/}
-                                {/*/>*/}
+                                    {league.name}
                                 </td>
                             </tr>
                         )

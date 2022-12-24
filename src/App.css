@@ -20,7 +20,7 @@ body {
 
 
 td, tr {
-    width: auto;
+    width: 350px;
     height: auto;
     text-align: center;
     border: 1px solid black;
@@ -34,4 +34,5 @@ table {
     font-size: 35px;
     margin: auto;
     border: 1px solid black;
+    box-shadow: 0 -10px 5px rgb(112, 196, 121);
 }
