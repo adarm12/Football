@@ -6,9 +6,15 @@ class TeamInformation extends React.Component {
 
     render() {
         return (
+
             <div>
-                hi
+                hiiiiii
+
             </div>
+
+            // <BrowserRouter>
+            //
+            // </BrowserRouter>
         );
     }
 
