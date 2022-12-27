@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import PrintLeaguesTable from "./PrintLeaguesTable";
 
 class LeaguesHomePage extends React.Component
 {
@@ -39,18 +40,9 @@ class LeaguesHomePage extends React.Component
                 <div>
                     {this.state.description}
                 </div>
-                <table>
-                    {this.state.leaguesList.map((league, index) => {
-                        return (
-                            <tr onClick={() => this.getTeam(league.id, league.name)}>
-                                <td>
-                                    {league.name}
-                                </td>
-                            </tr>
-                        )
-                    })
-                    }
-                </table>
+                <div>
+                    <PrintLeaguesTable leagues={this.state.leaguesList} chooseTeam = {this.getTeam} />
+                </div>
             </div>
         );
     }
