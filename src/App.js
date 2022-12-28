@@ -30,8 +30,8 @@ class App extends React.Component {
                         <Route path={"/GeneralStatistics"} element={<GeneralStatistics/>}/>
                         <Route path={"/LeagueResultsHistory"} element={<LeagueResultsHistory/>}/>
                         <Route path={"/TopScorersTable"} element={<TopScorersTable/>}/>
-                        {/*<Route path={"*"} element={<LeaguesHomePage/>}/>*/}
-                        {/*<Route path={"/"} element={<LeaguesHomePage/>}/>*/}
+                        <Route path={"*"} element={<LeaguesHomePage/>}/>
+                        <Route path={"/"} element={<LeaguesHomePage/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>

@@ -4,11 +4,9 @@ function PrintLeaguesTable(props) {
     return (
         <div>
             <table>
-                {props.leagues.map((league, index) => {
+                {props.leaguesList.map((league) => {
                     return (
-                        <tr onClick={() => props.chooseTeam(league.id, league.name)}>
-
-                        {/*// <tr onClick={() => props.choosePlayer(2)}>*/}
+                        <tr onClick={() => props.getTeams(league.id, league.name)}>
                             <td>
                                 {league.name}
                             </td>

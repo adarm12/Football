@@ -1,15 +1,14 @@
 import React from "react";
 
-function PrintPlayersTable(props)
-{
-    return(
+function PrintTeamTable(props) {
+    return (
         <div>
             <table>
-                {props.players.map((player) => {
+                {props.teamList.map((team) => {
                     return (
                         <tr>
-                            <td>
-                                {player.firstName} {player.lastName}
+                            <td onClick={() => props.getPlayers(team.id, team.name)}>
+                                {team.name}
                             </td>
                         </tr>
                     )
@@ -20,4 +19,4 @@ function PrintPlayersTable(props)
     )
 }
 
-export default PrintPlayersTable;
+export default PrintTeamTable;

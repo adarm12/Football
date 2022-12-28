@@ -2,15 +2,19 @@ import React from "react";
 import axios from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import PrintPlayersTable from "./PrintPlayersTable";
+import PrintTeamTable from "./PrintTeamTable";
 
 class LeaguesHomePage extends React.Component {
     state = {
         domain: 'https://app.seker.live/fm1/',
-        currentList: [],
-        playerList: [],
+        leaguesList: [],
         leagueId: 0,
-        teamId: 0,
         leagueName: "",
+        teamList: [],
+        teamId: 0,
+        teamName: "",
+        playerList: [],
+
         description: "Those are the existing leagues:",
     }
 
@@ -21,7 +25,7 @@ class LeaguesHomePage extends React.Component {
     getLeagues = () => {
         axios.get(this.state.domain + 'leagues')
             .then((response) => {
-                this.setState({currentList: response.data})
+                this.setState({leaguesList: response.data})
             });
     }
 
@@ -30,14 +34,18 @@ class LeaguesHomePage extends React.Component {
         this.state.leagueName = name
         axios.get(this.state.domain + '/teams/' + this.state.leagueId)
             .then((response) => {
-                this.setState(this.state.currentList = response.data)
+                this.setState(this.state.teamList = response.data)
                 this.setState(this.state.description = "Those are the groups in the " + this.state.leagueName + " league:")
             })
     }
 
-    getPlayersList = () => {
-        // /squad/{leagueId}/{teamId}
-
+    getPlayersList = (teamId, teamName) => {
+        this.state. teamId = teamId
+        this.state.teamName = teamName
+        axios.get(this.state.domain + '/squad/' + this.state.leagueId +'/'+this.state.teamId)
+            .then((response) => {
+                this.setState(this.state.playerList = response.data)
+            })
     }
 
     render() {
@@ -47,8 +55,9 @@ class LeaguesHomePage extends React.Component {
                     {this.state.description}
                 </div>
                 <div>
-                    <PrintLeaguesTable leagues={this.state.currentList} chooseTeam={this.getTeam}/>
-                    {/*<PrintPlayersTable team = {this.state.currentList} />*/}
+                    <PrintLeaguesTable leaguesList={this.state.leaguesList}  getTeams ={this.getTeam}/>
+                    <PrintTeamTable teamList={this.state.teamList} getPlayers ={this.getPlayersList}/>
+                    <PrintPlayersTable players = {this.state.playerList} />
                 </div>
             </div>
         );
