@@ -6,11 +6,27 @@ import LeaguesHomePage from "./LeaguesHomePage";
 import GeneralStatistics from "./GeneralStatistics";
 import LeagueResultsHistory from "./LeagueResultsHistory";
 import TopScorersTable from "./TopScorersTable";
+import PrintLeaguesTable from "./PrintLeaguesTable";
+import leaguesHomePage from "./LeaguesHomePage";
 
 
 class App extends React.Component {
 
-    state = {}
+    state = {
+        // domain: 'https://app.seker.live/fm1/',
+        // leaguesList: [],
+    }
+
+    // componentDidMount() {
+    //     this.getLeagues();
+    // }
+    //
+    // getLeagues = () => {
+    //     axios.get(this.state.domain + 'leagues')
+    //         .then((response) => {
+    //             this.setState({leaguesList: response.data})
+    //         });
+    // }
 
     render() {
         return (
@@ -34,6 +50,7 @@ class App extends React.Component {
                         <Route path={"/"} element={<LeaguesHomePage/>}/>
                     </Routes>
                 </BrowserRouter>
+                {/*<PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getTeam}/>*/}
             </div>
         )
     }

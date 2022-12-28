@@ -14,9 +14,10 @@ class LeaguesHomePage extends React.Component {
         teamId: 0,
         teamName: "",
         playerList: [],
-
         description: "Those are the existing leagues:",
+
     }
+    //https://app.seker.live/fm1/squad/2/560
 
     componentDidMount() {
         this.getLeagues();
@@ -37,12 +38,13 @@ class LeaguesHomePage extends React.Component {
                 this.setState(this.state.teamList = response.data)
                 this.setState(this.state.description = "Those are the groups in the " + this.state.leagueName + " league:")
             })
+        // {alert(this.state.leaguesList.length)}
     }
 
     getPlayersList = (teamId, teamName) => {
-        this.state. teamId = teamId
+        this.state.teamId = teamId
         this.state.teamName = teamName
-        axios.get(this.state.domain + '/squad/' + this.state.leagueId +'/'+this.state.teamId)
+        axios.get(this.state.domain + '/squad/' + this.state.leagueId + '/' + this.state.teamId)
             .then((response) => {
                 this.setState(this.state.playerList = response.data)
             })
@@ -55,9 +57,9 @@ class LeaguesHomePage extends React.Component {
                     {this.state.description}
                 </div>
                 <div>
-                    <PrintLeaguesTable leaguesList={this.state.leaguesList}  getTeams ={this.getTeam}/>
-                    <PrintTeamTable teamList={this.state.teamList} getPlayers ={this.getPlayersList}/>
-                    <PrintPlayersTable players = {this.state.playerList} />
+                    <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getTeam}/>
+                    <PrintTeamTable teamList={this.state.teamList} getPlayers={this.getPlayersList}/>
+                    <PrintPlayersTable players={this.state.playerList}/>
                 </div>
             </div>
         );
