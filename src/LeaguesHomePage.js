@@ -5,6 +5,7 @@ import PrintPlayersTable from "./PrintPlayersTable";
 import PrintTeamTable from "./PrintTeamTable";
 
 class LeaguesHomePage extends React.Component {
+
     state = {
         domain: 'https://app.seker.live/fm1/',
         leaguesList: [],
