@@ -40,7 +40,6 @@ class LeaguesHomePage extends React.Component {
 
     }
 
-
     render() {
         return (
             <div className="Main">
