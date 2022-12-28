@@ -1,13 +1,14 @@
 import React from "react";
 import axios from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
+import PrintPlayersTable from "./PrintPlayersTable";
 
-class LeaguesHomePage extends React.Component
-{
+class LeaguesHomePage extends React.Component {
     state = {
         domain: 'https://app.seker.live/fm1/',
-        leaguesList: [],
-        teamList: [],
+        currentList: [],
+        playerList: [],
+        leagueId: 0,
         teamId: 0,
         leagueName: "",
         description: "Those are the existing leagues:",
@@ -20,20 +21,23 @@ class LeaguesHomePage extends React.Component
     getLeagues = () => {
         axios.get(this.state.domain + 'leagues')
             .then((response) => {
-                this.setState({
-                    leaguesList: response.data
-                })
+                this.setState({currentList: response.data})
             });
     }
 
     getTeam = (id, name) => {
-        this.state.teamId = id
+        this.state.leagueId = id
         this.state.leagueName = name
-        axios.get(this.state.domain + '/teams/' + this.state.teamId)
+        axios.get(this.state.domain + '/teams/' + this.state.leagueId)
             .then((response) => {
-                this.setState(this.state.leaguesList = response.data)
+                this.setState(this.state.currentList = response.data)
                 this.setState(this.state.description = "Those are the groups in the " + this.state.leagueName + " league:")
             })
+    }
+
+    getPlayersList = () => {
+        // /squad/{leagueId}/{teamId}
+
     }
 
     render() {
@@ -43,7 +47,8 @@ class LeaguesHomePage extends React.Component
                     {this.state.description}
                 </div>
                 <div>
-                    <PrintLeaguesTable leagues={this.state.leaguesList} chooseTeam = {this.getTeam} />
+                    <PrintLeaguesTable leagues={this.state.currentList} chooseTeam={this.getTeam}/>
+                    {/*<PrintPlayersTable team = {this.state.currentList} />*/}
                 </div>
             </div>
         );
