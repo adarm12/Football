@@ -8,25 +8,13 @@ import LeagueResultsHistory from "./LeagueResultsHistory";
 import TopScorersTable from "./TopScorersTable";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import leaguesHomePage from "./LeaguesHomePage";
+import PrintTeamTable from "./PrintTeamTable";
 
 
 class App extends React.Component {
 
     state = {
-        // domain: 'https://app.seker.live/fm1/',
-        // leaguesList: [],
     }
-
-    // componentDidMount() {
-    //     this.getLeagues();
-    // }
-    //
-    // getLeagues = () => {
-    //     axios.get(this.state.domain + 'leagues')
-    //         .then((response) => {
-    //             this.setState({leaguesList: response.data})
-    //         });
-    // }
 
 
     render() {
@@ -35,15 +23,14 @@ class App extends React.Component {
                 <div className="Title">
                     <label> Football </label>
                 </div>
-
                 <BrowserRouter>
-                    <NavLink  style={{margin: "30px"}} to={"/LeaguesHomePage"}>Home Page</NavLink>
+                    <NavLink style={{margin: "30px"}} to={"/LeaguesHomePage"}>Home Page</NavLink>
                     <NavLink style={{margin: "30px"}} to={"/GeneralStatistics"}>General Statistics</NavLink>
                     <NavLink style={{margin: "30px"}} to={"/LeagueResultsHistory"}>League Results History</NavLink>
                     <NavLink style={{margin: "30px"}} to={"/TopScorersTable"}>Top Scorers Table</NavLink>
 
                     <Routes>
-                        <Route path={"/LeaguesHomePage"} element={<LeaguesHomePage/>} leaguesList={this.state.leaguesList}/>
+                        <Route path={"/LeaguesHomePage"} element={<LeaguesHomePage/>}/>
                         <Route path={"/GeneralStatistics"} element={<GeneralStatistics/>}/>
                         <Route path={"/LeagueResultsHistory"} element={<LeagueResultsHistory/>}/>
                         <Route path={"/TopScorersTable"} element={<TopScorersTable/>}/>
@@ -51,7 +38,6 @@ class App extends React.Component {
                         <Route path={"/"} element={<LeaguesHomePage/>}/>
                     </Routes>
                 </BrowserRouter>
-                {/*<PrintLeaguesTable leaguesList={this.state.leaguesList}/>*/}
             </div>
         )
     }
