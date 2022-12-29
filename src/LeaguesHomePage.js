@@ -3,6 +3,7 @@ import axios from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import PrintPlayersTable from "./PrintPlayersTable";
 import PrintTeamTable from "./PrintTeamTable";
+import LeagueResultsHistory from "./LeagueResultsHistory";
 
 class LeaguesHomePage extends React.Component {
 
@@ -18,6 +19,7 @@ class LeaguesHomePage extends React.Component {
         description: "Those are the existing leagues:",
 
     }
+
     //https://app.seker.live/fm1/squad/2/560
 
     componentDidMount() {
@@ -39,12 +41,18 @@ class LeaguesHomePage extends React.Component {
                 this.setState(this.state.teamList = response.data)
                 this.setState(this.state.description = "Those are the groups in the " + this.state.leagueName + " league:")
             })
-        // {alert(this.state.leaguesList.length)}
     }
 
     getPlayersList = (teamId, teamName) => {
         this.state.teamId = teamId
         this.state.teamName = teamName
+        axios.get(this.state.domain + '/squad/' + this.state.leagueId + '/' + this.state.teamId)
+            .then((response) => {
+                this.setState(this.state.playerList = response.data)
+            })
+    }
+
+    getTeamScoreHistory() {
         axios.get(this.state.domain + '/squad/' + this.state.leagueId + '/' + this.state.teamId)
             .then((response) => {
                 this.setState(this.state.playerList = response.data)
