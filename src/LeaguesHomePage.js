@@ -24,6 +24,7 @@ class LeaguesHomePage extends React.Component {
 
     componentDidMount() {
         this.getLeagues();
+
     }
 
     getLeagues = () => {
