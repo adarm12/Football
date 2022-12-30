@@ -3,6 +3,9 @@ import axios from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import PrintPlayersTable from "./PrintPlayersTable";
 import PrintTeamTable from "./PrintTeamTable";
+import App from "./App";
+import GeneralStatistics from "./GeneralStatistics";
+import PrintScoreTeamHistory from "./PrintScoreTeamHistory";
 
 class LeaguesHomePage extends React.Component {
 
@@ -74,7 +77,9 @@ class LeaguesHomePage extends React.Component {
                     <div>
                         {this.state.teamsDescription}
                     </div>
-                    <PrintTeamTable teamList={this.state.teamList} getPlayers={this.getPlayersList}/>
+                    {/*<PrintTeamTable teamList={this.state.teamList} getPlayers={this.getPlayersList}/>*/}
+                    <PrintScoreTeamHistory />
+
                     <div>
                         {this.state.playersDescription}
                     </div>

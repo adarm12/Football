@@ -13,8 +13,7 @@ import PrintTeamTable from "./PrintTeamTable";
 
 class App extends React.Component {
 
-    state = {
-    }
+    state = {}
 
 
     render() {
@@ -36,6 +35,7 @@ class App extends React.Component {
                         <Route path={"/TopScorersTable"} element={<TopScorersTable/>}/>
                         <Route path={"*"} element={<LeaguesHomePage/>}/>
                         <Route path={"/"} element={<LeaguesHomePage/>}/>
+
                     </Routes>
                 </BrowserRouter>
             </div>

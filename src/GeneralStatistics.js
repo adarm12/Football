@@ -1,3 +1,7 @@
+import printLeaguesTable from "./PrintLeaguesTable";
+import leaguesHomePage from "./LeaguesHomePage";
+import LeaguesHomePage from "./LeaguesHomePage";
+
 function generalStatistics() {
     return (
         <div>
