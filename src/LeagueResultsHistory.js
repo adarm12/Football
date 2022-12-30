@@ -5,6 +5,7 @@ function LeagueResultsHistory()
     return (
         <div>
             League results history
+
         </div>
     )
 
