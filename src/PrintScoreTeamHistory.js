@@ -12,21 +12,21 @@ function PrintScoreTeamHistory(props) {
 
             <table>
                 <header>
+                    {/*<td>*/}
+                    {/*    history: {props.history.length}*/}
                     <td>
                         Round
-                        {props.history.map((history, index) => {
+                        {props.history.map((history) => {
                             return (
                                 <tr>
-                                    {history.goals.map((cell, cellIndex) => {
-                                        return (
-                                            <td>
-                                                {props.getScore(cell.home)}
-                                            </td>
-                                        )
-                                    })}
+                                    <td>
+                                        {history.round}
+                                    </td>
                                 </tr>
                             )
-                        })}
+                        })
+                        }
+
                     </td>
                     <td>
                         home Team
@@ -43,7 +43,19 @@ function PrintScoreTeamHistory(props) {
                     </td>
                     <td>
                         Home Team Win
-
+                        {props.history.map((history, index) => {
+                            return (
+                                history.goals.map((cell, cellIndex) => {
+                                    return (
+                                        <tr>
+                                            <td>
+                                                {cell.id}
+                                            </td>
+                                        </tr>
+                                    )})
+                            )
+                        })
+                        }
                     </td>
                     <td>
                         Away Team
@@ -60,6 +72,19 @@ function PrintScoreTeamHistory(props) {
                     </td>
                     <td>
                         Away Team Win
+                        {/*{props.history.map((history, index) => {*/}
+                        {/*    return (*/}
+                        {/*        history.goals.map((cell, cellIndex) => {*/}
+                        {/*            return (*/}
+                        {/*                <tr>*/}
+                        {/*                    <td>*/}
+                        {/*                        {cell.id}*/}
+                        {/*                    </td>*/}
+                        {/*                </tr>*/}
+                        {/*            )})*/}
+                        {/*    )*/}
+                        {/*})*/}
+                        {/*}*/}
                     </td>
                     <td>
                         Goal Difference

@@ -84,7 +84,6 @@ class LeaguesHomePage extends React.Component {
     }
 
     getScore = () => {
-        {debugger}
         if (this.state.historyList.home === true) {
             this.state.homeTeamScore++
         }
