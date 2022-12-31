@@ -12,20 +12,21 @@ function PrintScoreTeamHistory(props) {
 
             <table>
                 <header>
-                    {/*<td>*/}
-                    {/*    history: {props.history.length}*/}
                     <td>
                         Round
-                        {props.history.map((history,index) => {
+                        {props.history.map((history, index) => {
                             return (
                                 <tr>
-                                    <td>
-                                        {history.goals.length}
-                                    </td>
-                                </tr>)
-
-                        })
-                        }
+                                    {history.goals.map((cell, cellIndex) => {
+                                        return (
+                                            <td>
+                                                {props.getScore(cell.home)}
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                            )
+                        })}
                     </td>
                     <td>
                         home Team
