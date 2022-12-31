@@ -50,9 +50,18 @@ class LeaguesHomePage extends React.Component {
         // {alert(this.state.leaguesList.length)}
     }
 
-    getPlayersList = (teamId, teamName) => {
+
+    get = (teamId, teamName) =>
+    {
         this.state.teamId = teamId
         this.state.teamName = teamName
+
+        this.getPlayersList(teamId, teamName)
+        this.getHistory(teamId, teamName)
+    }
+
+
+    getPlayersList = (teamId, teamName) => {
         axios.get(this.state.domain + '/squad/' + this.state.leagueId + '/' + this.state.teamId)
             .then((response) => {
                 this.setState(this.state.playerList = response.data)
@@ -63,6 +72,8 @@ class LeaguesHomePage extends React.Component {
     getHistory = (teamId, teamName) => {
         this.state.teamId = teamId
         this.state.teamName = teamName
+
+
         axios.get(this.state.domain + '/history/' + this.state.leagueId + '/' + this.state.teamId)
             .then((response) => {
                 this.setState(this.state.historyList = response.data)
@@ -87,13 +98,11 @@ class LeaguesHomePage extends React.Component {
                 </div>
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getTeam}/>
+
                     <div>
                         {this.state.teamsDescription}
                     </div>
-                    <PrintTeamTable teamList={this.state.teamList}
-                                    getPlayers={this.getPlayersList}
-                                    getHistory={this.getHistory}
-                    />
+                    <PrintTeamTable teamList={this.state.teamList} get = {this.get}/>
                     <td>
                         <div>
                             {this.state.playersDescription}
@@ -106,6 +115,7 @@ class LeaguesHomePage extends React.Component {
                         </div>
                         <PrintScoreTeamHistory history={this.state.historyList}/>
                     </td>
+
                 </div>
             </div>
         );

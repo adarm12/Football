@@ -8,7 +8,7 @@ function PrintScoreTeamHistory(props) {
             <table>
                 <header>
                     <td>
-                        {props.history.length}
+                        history: {props.history.length}
                         {/*{props.history.map((his) => {*/}
                         {/*    return (*/}
                         {/*        <tr>*/}
