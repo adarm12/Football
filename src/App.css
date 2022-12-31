@@ -22,14 +22,20 @@ body {
     text-align: center;
 }
 
-
-td, tr {
+tr {
     /*width: 350px;*/
     /*height: auto;*/
     text-align: center;
     border: 1px solid black;
-    padding: 5px
+    /*padding: 5px*/
+}
 
+td {
+    /*width: 350px;*/
+    /*height: auto;*/
+    text-align: center;
+    border: 1px solid black;
+    /*padding: 5px*/
 }
 
 
@@ -38,6 +44,6 @@ table {
     /*font-size: 25px;*/
     margin: auto;
     border: 1px solid black;
-    box-shadow: 0 -10px 5px rgb(35, 107, 43);
+    /*box-shadow: 0 -10px 5px rgb(35, 107, 43);*/
 }
 

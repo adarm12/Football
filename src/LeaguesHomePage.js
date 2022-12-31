@@ -21,6 +21,8 @@ class LeaguesHomePage extends React.Component {
         teamsDescription: "",
         playerList: [],
         playersDescription: "",
+        historyList: [],
+        historyDescription: "",
     }
 
     //https://app.seker.live/fm1/squad/2/560
@@ -59,12 +61,24 @@ class LeaguesHomePage extends React.Component {
             })
     }
 
-    getTeamScoreHistory() {
-        axios.get(this.state.domain + '/squad/' + this.state.leagueId + '/' + this.state.teamId)
+    getHistory = (teamId, teamName) => {
+        this.state.teamId = teamId
+        this.state.teamName = teamName
+        axios.get(this.state.domain + '/history/' + this.state.leagueId + '/' + this.state.teamId)
             .then((response) => {
-                this.setState(this.state.playerList = response.data)
+                this.setState(this.state.historyList = response.data)
+                this.setState(this.state.historyDescription = "This is the history of: " + this.state.teamName + " team:")
+
             })
+
     }
+
+    // getTeamScoreHistory() {
+    //     axios.get(this.state.domain + '/squad/' + this.state.leagueId + '/' + this.state.teamId)
+    //         .then((response) => {
+    //             this.setState(this.state.playerList = response.data)
+    //         })
+    // }
 
     render() {
         return (
@@ -77,14 +91,22 @@ class LeaguesHomePage extends React.Component {
                     <div>
                         {this.state.teamsDescription}
                     </div>
-                    <PrintTeamTable teamList={this.state.teamList} getPlayers={this.getPlayersList}/>
-                    {/*<PrintScoreTeamHistory />*/}
-
-                    <div>
-                        {this.state.playersDescription}
-                    </div>
-                    <PrintPlayersTable players={this.state.playerList}/>
-                    {/*<PrintScoreTeamHistory/>*/}
+                    <PrintTeamTable teamList={this.state.teamList}
+                                    getPlayers={this.getPlayersList}
+                                    getHistory={this.getHistory}
+                    />
+                    <td>
+                        <div>
+                            {this.state.playersDescription}
+                        </div>
+                        <PrintPlayersTable players={this.state.playerList}/>
+                    </td>
+                    <td>
+                        <div>
+                            {this.state.historyDescription}
+                        </div>
+                        <PrintScoreTeamHistory history={this.state.historyList}/>
+                    </td>
                 </div>
             </div>
         );
