@@ -1,6 +1,4 @@
-import printLeaguesTable from "./PrintLeaguesTable";
-import leaguesHomePage from "./LeaguesHomePage";
-import LeaguesHomePage from "./LeaguesHomePage";
+import React from "react";
 
 function generalStatistics() {
     return (

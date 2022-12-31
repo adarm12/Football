@@ -13,8 +13,21 @@ import PrintTeamTable from "./PrintTeamTable";
 
 class App extends React.Component {
 
-    state = {}
-
+    // stateApp = {
+    //     domain: 'https://app.seker.live/fm1/',
+    //     leaguesList: [],
+    // }
+    //
+    // componentDidMount() {
+    //     this.getLeagues();
+    // }
+    //
+    // getLeagues = () => {
+    //     axios.get(this.stateApp.domain + 'leagues')
+    //         .then((response) => {
+    //             this.setState(this.stateApp.leaguesList = response.data)
+    //         });
+    // }
 
     render() {
         return (
@@ -35,7 +48,6 @@ class App extends React.Component {
                         <Route path={"/TopScorersTable"} element={<TopScorersTable/>}/>
                         <Route path={"*"} element={<LeaguesHomePage/>}/>
                         <Route path={"/"} element={<LeaguesHomePage/>}/>
-
                     </Routes>
                 </BrowserRouter>
             </div>

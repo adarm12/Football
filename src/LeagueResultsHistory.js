@@ -1,10 +1,15 @@
 import React from "react";
+import PrintLeaguesTable from "./PrintLeaguesTable";
 
-function LeagueResultsHistory()
+function LeagueResultsHistory(props)
 {
     return (
         <div>
             League results history
+
+            result: {}
+
+            {/*<PrintLeaguesTable leaguesList = {props.leaguesList}/>*/}
 
         </div>
     )

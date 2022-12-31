@@ -30,13 +30,12 @@ class LeaguesHomePage extends React.Component {
 
     componentDidMount() {
         this.getLeagues();
-
     }
 
     getLeagues = () => {
         axios.get(this.state.domain + 'leagues')
             .then((response) => {
-                this.setState({leaguesList: response.data})
+                this.setState(this.state.leaguesList = response.data)
             });
     }
 
