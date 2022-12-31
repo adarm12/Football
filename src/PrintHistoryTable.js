@@ -3,7 +3,7 @@ import React from "react";
 function PrintHistoryTable(props) {
     return (
         <div>
-            <table className="historyLeaguesTable">
+            <div className= "historyLeaguesTable" >
                 <td>
                     <header>
                        Round
@@ -24,16 +24,13 @@ function PrintHistoryTable(props) {
                         Away Team Score
                     </header>
                 </td>
-
                 <td>
                     <header>
                         Away Team Score
                     </header>
                 </td>
 
-
-            </table>
-
+            </div>
         </div>
     )
 }

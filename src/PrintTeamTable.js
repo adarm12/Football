@@ -5,14 +5,12 @@ function PrintTeamTable(props) {
     return (
         <div>
             <PrintDescription description = {props.description} />
-            <table>
+            <table className="teamTable">
                 {props.teamList.map((team) => {
                     return (
-                        <tr>
-                            <td onClick={() => props.getPlayersAndHistory(team.id, team.name)}>
+                            <tr onClick={() => props.getPlayersAndHistory(team.id, team.name)}>
                                 {team.name}
-                            </td>
-                        </tr>
+                            </tr>
                     )
                 })
                 }

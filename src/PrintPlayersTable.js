@@ -1,14 +1,11 @@
 import React from "react";
 import PrintDescription from "./PrintDescription";
 
-function PrintPlayersTable(props)
-{
-    return(
+function PrintPlayersTable(props) {
+    return (
         <div>
-            <div>
-                <PrintDescription description = {props.description} />
-            </div>
-            <table>
+            <PrintDescription description={props.description}/>
+            <table className="playersTable">
                 {props.players.map((player) => {
                     return (
                         <tr>

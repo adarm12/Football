@@ -77,7 +77,7 @@ class LeaguesHomePage extends React.Component {
         axios.get(this.state.domain + '/history/' + this.state.leagueId + '/' + this.state.teamId)
             .then((response) => {
                 this.setState(this.state.historyList = response.data)
-                this.setState(this.state.historyDescription = "This is the history of: " + this.state.teamName + " team:")
+                this.setState(this.state.historyDescription = "This is the history of - " + this.state.teamName + " team:")
 
             })
 
@@ -92,13 +92,6 @@ class LeaguesHomePage extends React.Component {
         }
     }
 
-    // getTeamScoreHistory() {
-    //     axios.get(this.state.domain + '/squad/' + this.state.leagueId + '/' + this.state.teamId)
-    //         .then((response) => {
-    //             this.setState(this.state.playerList = response.data)
-    //         })
-    // }
-
     render() {
         return (
             <div className="Main">
@@ -108,16 +101,16 @@ class LeaguesHomePage extends React.Component {
                     <PrintTeamTable teamList={this.state.teamList}
                                     getPlayersAndHistory={this.getPlayersAndHistory}
                                     description={this.state.teamsDescription}/>
-                    <td>
-                        <PrintPlayersTable players={this.state.playerList}
-                                           description={this.state.playersDescription}/>
-                    </td>
-                    <td>
+
+                    <PrintPlayersTable players={this.state.playerList}
+                                       description={this.state.playersDescription}/>
+
+
                         <PrintScoreTeamHistory history={this.state.historyList}
                                                description={this.state.historyDescription}
                                                getScore={this.getScore}/>
                         {this.getScore} result: {this.state.homeTeamScore}
-                    </td>
+
                 </div>
             </div>
         );

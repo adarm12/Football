@@ -1,13 +1,6 @@
+.App {
 
-/*.App {*/
-/*    background-image: url("background.jpg")*/
-/*}*/
-
-/*.Main {*/
-
-/*    background-image: url("background.jpg")*/
-/*    !*background: greenyellow;*!*/
-/*}*/
+}
 
 .Title {
     font-size: 50px;
@@ -17,25 +10,44 @@
 
 
 body {
-    font-size: 20px;
+    font-size: 25px;
     font-family: "Gabriola", "Assistant SemiBold";
     text-align: center;
 }
-
-td,tr {
-    /*width: 350px;*/
-    /*height: auto;*/
-    text-align: center;
-    border: 1px solid black;
-    /*padding: 5px*/
-}
-
 table {
     text-align-all: center;
-    /*font-size: 25px;*/
+    font-size: 20px;
     margin: auto;
+    width: 250px;
+    text-align: center;
     border-collapse: collapse;
-    /*border: 1px solid black;*/
+    border: 1px solid black;
     /*box-shadow: 0 -10px 5px rgb(35, 107, 43);*/
 }
 
+
+td, tr {
+    border: 1px solid black;
+    padding: 5px
+}
+
+/*tr:hover {*/
+/*    background-color: #54a64d;*/
+/*}*/
+
+
+table.playersTable {
+   margin-left: 10px;
+    width: 150px;
+    text-align: center;
+    border-collapse: collapse;
+
+}
+table.scoreTeamHistory{
+    width: 300px;
+}
+
+div.description
+{
+    background-color: cadetblue;
+}

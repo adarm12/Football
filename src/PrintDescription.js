@@ -1,6 +1,6 @@
 function PrintDescription(props) {
     return (
-        <div>
+        <div id="description">
             {props.description}
         </div>
     )
