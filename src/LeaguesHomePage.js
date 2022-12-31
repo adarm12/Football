@@ -92,26 +92,13 @@ class LeaguesHomePage extends React.Component {
         return (
             <div className="Main">
                 <div>
-                    {this.state.leaguesDescription}
-                </div>
-                <div>
-                    <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getTeam}/>
-
-                    <div>
-                        {this.state.teamsDescription}
-                    </div>
-                    <PrintTeamTable teamList={this.state.teamList} get={this.get}/>
+                    <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getTeam} description={this.state.leaguesDescription}/>
+                    <PrintTeamTable teamList={this.state.teamList} get={this.get} description = {this.state.teamsDescription} />
                         <td>
-                            <div>
-                                {this.state.playersDescription}
-                            </div>
-                            <PrintPlayersTable players={this.state.playerList}/>
+                            <PrintPlayersTable players={this.state.playerList} description = {this.state.playersDescription}/>
                         </td>
                         <td>
-                            <div>
-                                {this.state.historyDescription}
-                            </div>
-                            <PrintScoreTeamHistory history={this.state.historyList}/>
+                            <PrintScoreTeamHistory history={this.state.historyList} description = {this.state.historyDescription}/>
                         </td>
                 </div>
             </div>

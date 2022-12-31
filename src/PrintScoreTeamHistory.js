@@ -1,10 +1,15 @@
 import printTeamTable from "./PrintTeamTable";
 import React from "react";
+import PrintDescription from "./PrintDescription";
 
 function PrintScoreTeamHistory(props) {
     //https://app.seker.live/fm1/history/2/500
     return (
         <div>
+            <div>
+                <PrintDescription description={props.description}/>
+            </div>
+
             <table>
                 <header>
                     {/*<td>*/}
@@ -47,7 +52,7 @@ function PrintScoreTeamHistory(props) {
                                         {his.awayTeam.name}
                                     </td>
                                 </tr>
-                        )
+                            )
                         })
                         }
                     </td>

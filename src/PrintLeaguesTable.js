@@ -4,8 +4,11 @@ import PrintDescription from "./PrintDescription";
 
 function PrintLeaguesTable(props) {
     return (
+
         <div>
+            <PrintDescription description={props.description}/>
             <table>
+
                 {props.leaguesList.map((league) => {
                     return (
                         <tr onClick={() => props.getTeams(league.id, league.name)}>
@@ -19,7 +22,6 @@ function PrintLeaguesTable(props) {
             </table>
 
         </div>
-
     )
 }
 

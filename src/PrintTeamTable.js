@@ -1,8 +1,10 @@
 import React from "react";
+import PrintDescription from "./PrintDescription";
 
 function PrintTeamTable(props) {
     return (
         <div>
+            <PrintDescription description = {props.description} />
             <table>
                 {props.teamList.map((team) => {
                     return (

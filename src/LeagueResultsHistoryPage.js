@@ -1,5 +1,6 @@
 import React from "react";
 import PrintLeaguesTable from "./PrintLeaguesTable";
+import PrintHistoryTable from "./PrintHistoryTable";
 
 class LeagueResultsHistoryPage extends React.Component {
 
@@ -7,6 +8,8 @@ class LeagueResultsHistoryPage extends React.Component {
         return (
             <div>
                 League results history
+
+                <PrintHistoryTable />
 
 
             </div>
