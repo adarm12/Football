@@ -9,44 +9,54 @@ function PrintScoreTeamHistory(props) {
                 <header>
                     {/*<td>*/}
                     {/*    history: {props.history.length}*/}
-                        <td>
-                            Round
-                            {props.history.map((his) => {
-                                return (
-                                    <tr>
-                                        <td>
-                                            {his.round}
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                            }
-                        </td>
-                        <td>
-                            Games Number
-                            {/*{props.history.map((his) => {*/}
-                            {/*    return (*/}
-                            {/*        <tr>*/}
-                            {/*            <td>*/}
-                            {/*                {his.round}*/}
-                            {/*            </td>*/}
-                            {/*        </tr>*/}
-                            {/*    )*/}
-                            {/*})*/}
-                            {/*}*/}
-                        </td>
-                        <td>
-                            Win
-                        </td>
-                        <td>
-                            Equality
-                        </td>
-                        <td>
-                            Score
-                        </td>
-                        {/*<td>*/}
-                        {/*    Goal Difference*/}
-                    {/*</td>*/}
+                    <td>
+                        Round
+                        {props.history.map((his) => {
+                            return (
+                                <tr>
+                                    <td>
+                                        {his.round}
+                                    </td>
+                                </tr>
+                            )
+                        })
+                        }
+                    </td>
+                    <td>
+                        home Team
+                        {props.history.map((his) => {
+                            return (
+                                <tr>
+                                    <td>
+                                        {his.homeTeam.name}
+                                    </td>
+                                </tr>
+                            )
+                        })
+                        }
+                    </td>
+                    <td>
+                        Home Team Win
+                    </td>
+                    <td>
+                        Away Team
+                        {props.history.map((his) => {
+                            return (
+                                <tr>
+                                    <td>
+                                        {his.awayTeam.name}
+                                    </td>
+                                </tr>
+                        )
+                        })
+                        }
+                    </td>
+                    <td>
+                        Away Team Win
+                    </td>
+                    <td>
+                        Goal Difference
+                    </td>
                 </header>
             </table>
         </div>

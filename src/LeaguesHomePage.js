@@ -102,22 +102,21 @@ class LeaguesHomePage extends React.Component {
                         {this.state.teamsDescription}
                     </div>
                     <PrintTeamTable teamList={this.state.teamList} get={this.get}/>
-                        <td>
-                            <div>
-                                {this.state.playersDescription}
-                            </div>
-                            <PrintPlayersTable players={this.state.playerList}/>
-                        </td>
-                        <td>
-                            <div>
-                                {this.state.historyDescription}
-                            </div>
-                            <PrintScoreTeamHistory history={this.state.historyList}/>
-                        </td>
+                    <td>
+                        <div>
+                            {this.state.playersDescription}
+                        </div>
+                        <PrintPlayersTable players={this.state.playerList}/>
+                    </td>
+                    <td>
+                        <div>
+                            {this.state.historyDescription}
+                        </div>
+                        <PrintScoreTeamHistory history={this.state.historyList}/>
+                    </td>
                 </div>
             </div>
-        )
-            ;
+        );
     }
 }
 
