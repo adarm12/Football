@@ -51,8 +51,7 @@ class LeaguesHomePage extends React.Component {
     }
 
 
-    get = (teamId, teamName) =>
-    {
+    get = (teamId, teamName) => {
         this.state.teamId = teamId
         this.state.teamName = teamName
 
@@ -102,23 +101,23 @@ class LeaguesHomePage extends React.Component {
                     <div>
                         {this.state.teamsDescription}
                     </div>
-                    <PrintTeamTable teamList={this.state.teamList} get = {this.get}/>
-                    <td>
-                        <div>
-                            {this.state.playersDescription}
-                        </div>
-                        <PrintPlayersTable players={this.state.playerList}/>
-                    </td>
-                    <td>
-                        <div>
-                            {this.state.historyDescription}
-                        </div>
-                        <PrintScoreTeamHistory history={this.state.historyList}/>
-                    </td>
-
+                    <PrintTeamTable teamList={this.state.teamList} get={this.get}/>
+                        <td>
+                            <div>
+                                {this.state.playersDescription}
+                            </div>
+                            <PrintPlayersTable players={this.state.playerList}/>
+                        </td>
+                        <td>
+                            <div>
+                                {this.state.historyDescription}
+                            </div>
+                            <PrintScoreTeamHistory history={this.state.historyList}/>
+                        </td>
                 </div>
             </div>
-        );
+        )
+            ;
     }
 }
 

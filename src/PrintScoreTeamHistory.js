@@ -7,34 +7,46 @@ function PrintScoreTeamHistory(props) {
         <div>
             <table>
                 <header>
-                    <td>
-                        history: {props.history.length}
-                        {/*{props.history.map((his) => {*/}
-                        {/*    return (*/}
-                        {/*        <tr>*/}
-                        {/*            <td>*/}
-                        {/*                {his.round}*/}
-                        {/*            </td>*/}
-                        {/*        </tr>*/}
-                        {/*    )*/}
-                        {/*})*/}
-                        {/*}*/}
-                    {/*</td>*/}
                     {/*<td>*/}
-                    {/*    Games Number*/}
+                    {/*    history: {props.history.length}*/}
+                        <td>
+                            Round
+                            {props.history.map((his) => {
+                                return (
+                                    <tr>
+                                        <td>
+                                            {his.round}
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                            }
+                        </td>
+                        <td>
+                            Games Number
+                            {/*{props.history.map((his) => {*/}
+                            {/*    return (*/}
+                            {/*        <tr>*/}
+                            {/*            <td>*/}
+                            {/*                {his.round}*/}
+                            {/*            </td>*/}
+                            {/*        </tr>*/}
+                            {/*    )*/}
+                            {/*})*/}
+                            {/*}*/}
+                        </td>
+                        <td>
+                            Win
+                        </td>
+                        <td>
+                            Equality
+                        </td>
+                        <td>
+                            Score
+                        </td>
+                        {/*<td>*/}
+                        {/*    Goal Difference*/}
                     {/*</td>*/}
-                    {/*<td>*/}
-                    {/*    Win*/}
-                    {/*</td>*/}
-                    {/*<td>*/}
-                    {/*    Equality*/}
-                    {/*</td>*/}
-                    {/*<td>*/}
-                    {/*    Score*/}
-                    {/*</td>*/}
-                    {/*/!*<td>*!/*/}
-                    {/*/!*    Goal Difference*!/*/}
-                    </td>
                 </header>
             </table>
         </div>
