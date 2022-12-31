@@ -1,4 +1,3 @@
-
 /*.App {*/
 /*    background-image: url("background.jpg")*/
 /*}*/
@@ -22,28 +21,20 @@ body {
     text-align: center;
 }
 
-tr {
+td,tr {
     /*width: 350px;*/
     /*height: auto;*/
     text-align: center;
     border: 1px solid black;
     /*padding: 5px*/
 }
-
-td {
-    /*width: 350px;*/
-    /*height: auto;*/
-    text-align: center;
-    border: 1px solid black;
-    /*padding: 5px*/
-}
-
 
 table {
     text-align-all: center;
     /*font-size: 25px;*/
     margin: auto;
-    border: 1px solid black;
+    border-collapse: collapse;
+    /*border: 1px solid black;*/
     /*box-shadow: 0 -10px 5px rgb(35, 107, 43);*/
 }
 

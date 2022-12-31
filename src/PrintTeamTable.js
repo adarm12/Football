@@ -9,7 +9,7 @@ function PrintTeamTable(props) {
                 {props.teamList.map((team) => {
                     return (
                         <tr>
-                            <td onClick={() => props.get(team.id, team.name)}>
+                            <td onClick={() => props.getPlayersAndHistory(team.id, team.name)}>
                                 {team.name}
                             </td>
                         </tr>

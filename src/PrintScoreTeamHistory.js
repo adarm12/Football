@@ -16,24 +16,24 @@ function PrintScoreTeamHistory(props) {
                     {/*    history: {props.history.length}*/}
                     <td>
                         Round
-                        {props.history.map((his) => {
+                        {props.history.map((history,index) => {
                             return (
                                 <tr>
                                     <td>
-                                        {his.round}
+                                        {history.goals.length}
                                     </td>
-                                </tr>
-                            )
+                                </tr>)
+
                         })
                         }
                     </td>
                     <td>
                         home Team
-                        {props.history.map((his) => {
+                        {props.history.map((history) => {
                             return (
                                 <tr>
                                     <td>
-                                        {his.homeTeam.name}
+                                        {history.homeTeam.name}
                                     </td>
                                 </tr>
                             )
@@ -42,14 +42,15 @@ function PrintScoreTeamHistory(props) {
                     </td>
                     <td>
                         Home Team Win
+
                     </td>
                     <td>
                         Away Team
-                        {props.history.map((his) => {
+                        {props.history.map((history) => {
                             return (
                                 <tr>
                                     <td>
-                                        {his.awayTeam.name}
+                                        {history.awayTeam.name}
                                     </td>
                                 </tr>
                             )
