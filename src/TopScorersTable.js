@@ -2,138 +2,102 @@ import React from "react";
 import axios from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import LeaguesHomePage from "./LeaguesHomePage";
-import PrintTeamTable from "./PrintTeamTable";
-import PrintPlayersTable from "./PrintPlayersTable";
-import PrintScoreTeamHistory from "./PrintScoreTeamHistory";
-import PrintTopScoreTable from "./PrintTopScoreTable";
 
-class TopScorersTable extends React.Component {
+class TopScorersTable extends React.Component{
+
     state = {
         domain: 'https://app.seker.live/fm1/',
         leaguesList: [],
-        leagueId: 0,
-        leagueName: "",
-        leaguesDescription: "These are the existing leagues:",
-        leagueHistoryList: [],
-        tableDescription: "",
+        leagueTeams: [],
+        playerList: [],
+        playersGoals: new Map([]),
+        leagueHistory: []
+
     }
 
-    //https://app.seker.live/fm1/squad/2/560
-
-
     componentDidMount() {
-        this.getLeagues();
+        this.getLeagues()
     }
 
     getLeagues = () => {
+
         axios.get(this.state.domain + 'leagues')
             .then((response) => {
-                this.setState(this.state.leaguesList = response.data)
+                this.setState({
+                    leaguesList: response.data
+                })
             });
     }
 
-    //https://app.seker.live/fm1/history/2/500
+    getScorers = (leagueId) => {
 
-
-    getLeagueHistory = (id, name) => {
-        this.state.leagueId = id
-        this.state.leagueName = name
-        axios.get(this.state.domain + '/history/' + this.state.leagueId)
+        axios.get(this.state.domain+"teams/"+leagueId)
             .then((response) => {
-                this.setState(this.state.leagueHistoryList = response.data)
-                this.setState(this.state.tableDescription = "These are top 3 players in the " + this.state.leagueName + " league:")
-            })
-        // {alert(this.state.leagueId.length)}
+                //debugger
+                this.state.leagueTeams = response.data
+                this.setState({
+                    leaguesList: []
+                })
+                this.state.leagueTeams.map((team) => {
+                    this.getPlayers(team,leagueId)
+                })
+                this.getLeagueHistory(leagueId);
+
+                //the map- playersGoals has a problem in get and set (line 59), after fixing it should be done
+        })
+
     }
+
+
+    getLeagueHistory = (leagueId) => {
+        axios.get(this.state.domain+"history/"+leagueId)
+            .then((response) => {
+                this.state.leagueHistory = response.data
+
+                this.state.leagueHistory.map((game) => {
+                    game.goals.map((goal) => {
+                        const currentGoals = this.state.playersGoals.get(goal.scorer);
+                        const updateGoals = currentGoals+1
+                        this.state.playersGoals.set(goal.scorer, updateGoals);
+                    })
+                })
+            })
+    }
+
+    getPlayers = (team,leagueId) => {
+        axios.get(this.state.domain+"squad/"+leagueId+"/"+team.id)
+            .then((response) => {
+                this.state.playerList = response.data
+
+                this.state.playerList.map((player) => {
+                    this.state.playersGoals.set(player, 0)
+                })
+
+            })
+
+
+    }
+
+
 
 
     render() {
         return (
-            <div className="Main">
+            <div className={"main"}>
                 <div>
-                    <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getLeagueHistory}
-                                       description={this.state.leaguesDescription}/>
-                    <PrintTopScoreTable teamList={this.state.leagueHistoryList}
-                                    description={this.state.tableDescription}/>
+                    Top scorers table
                 </div>
+
+                {this.state.leaguesList.map((league) => {
+                    return (
+                        <button onClick={() => this.getScorers(league.id)}> {league.name}</button>
+                    )
+                })}
             </div>
         );
     }
-}
 
-//     state = {
-//         domain: 'https://app.seker.live/fm1/',
-//         leaguesList: [],
-//         leagueTeams: [],
-//         playerList: [],
-//         teamHistory: []
-//
-//     }
-//
-//     componentDidMount() {
-//         this.getLeagues()
-//     }
-//
-//     getLeagues = () => {
-//
-//         axios.get(this.state.domain + 'leagues')
-//             .then((response) => {
-//                 this.setState({
-//                     leaguesList: response.data
-//                 })
-//             });
-//     }
-//
-//     getScorers = (leagueId) => {
-//
-//         axios.get(this.state.domain+"teams/"+leagueId)
-//             .then((response) => {
-//                 //debugger
-//                 this.state.leagueTeams = response.data
-//                 this.setState({
-//                     leaguesList: []
-//                 })
-//                 this.state.leagueTeams.map((team) => {
-//                     this.getPlayers(team,leagueId)
-//                 })
-//         })
-//     }
-//
-//     getPlayers = (team,leagueId) => {
-//         axios.get(this.state.domain+"squad/"+leagueId+"/"+team.id)
-//             .then((response) => {
-//                 this.state.playerList = response.data
-//
-//             })
-//
-//         axios.get(this.state.domain+"history/"+leagueId+"/"+team.id)
-//             .then((response) => {
-//
-//                 this.state.teamHistory = response.data
-//             })
-//
-//
-//     }
-//
-//
-//
-//     render() {
-//         return (
-//             <div className={"main"}>
-//                 <div>
-//                     Top scorers table
-//                 </div>
-//
-//                 {this.state.leaguesList.map((league) => {
-//                     return (
-//                         <button onClick={() => this.getScorers(league.id)}> {league.name}</button>
-//                     )
-//                 })}
-//             </div>
-//         );
-//     }
-//
-// }
+}
 
 
 export default TopScorersTable;
