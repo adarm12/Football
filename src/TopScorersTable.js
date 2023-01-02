@@ -14,12 +14,11 @@ class TopScorersTable extends React.Component {
         leagueId: 0,
         leagueName: "",
         leaguesDescription: "These are the existing leagues:",
-        leagueHistoryList: [],
+        topPlayersList: [],
         tableDescription: "",
     }
 
     //https://app.seker.live/fm1/squad/2/560
-
 
     componentDidMount() {
         this.getLeagues();
@@ -34,18 +33,65 @@ class TopScorersTable extends React.Component {
 
     //https://app.seker.live/fm1/history/2/500
 
-
     getLeagueHistory = (id, name) => {
         this.state.leagueId = id
         this.state.leagueName = name
         axios.get(this.state.domain + '/history/' + this.state.leagueId)
             .then((response) => {
-                this.setState(this.state.leagueHistoryList = response.data)
+                this.setState(this.state.topPlayersList = response.data)
+                this.getNewHistoryList(response.data)
                 this.setState(this.state.tableDescription = "These are top 3 players in the " + this.state.leagueName + " league:")
             })
-        // {alert(this.state.leagueId.length)}
     }
 
+    getNewHistoryList = (history) => {
+        let list = [];
+        for (let i = 0; i < history.length; i++) {
+            for (let j = 0; j < history[i].goals.length; j++) {
+                list.push(history[i].goals[j].scorer)
+            }
+        }
+        this.TopScore(list)
+    }
+
+    TopScore = (list) => {
+        let playersList = [];
+        let newTopPlayersList = [];
+        for (let i = 0; i < list.length; i++) {
+            let goalsCounter = 1;
+            for (let j = i + 1; j < list.length; j++) {
+                if (list[i].id === list[j].id)
+                    goalsCounter++
+            }
+            const playerDetails = {
+                firstName: list[i].firstName,
+                lastName: list[i].lastName,
+                id: list[i].id,
+                goals: goalsCounter,
+            }
+            playersList.push(playerDetails)
+        }
+        // alert(playersList.length)
+
+        playersList = playersList.filter((firstPlayer, index, self) =>
+            index === self.findIndex((secondPlayer) => (
+                secondPlayer.id === firstPlayer.id
+
+            )))
+        playersList.sort((firstPlayer, secondPlayer) => {
+            if (firstPlayer.goals > secondPlayer.goals) {
+                return -1;
+            }
+            if (secondPlayer.goals > firstPlayer.goals) {
+                return 1
+            }
+            return 0;
+        })
+        for (let i = 0; i < 3; i++) {
+            newTopPlayersList.push(playersList[i])
+        }
+        this.setState(this.state.topPlayersList = newTopPlayersList)
+    }
 
     render() {
         return (
@@ -53,13 +99,16 @@ class TopScorersTable extends React.Component {
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getLeagueHistory}
                                        description={this.state.leaguesDescription}/>
-                    <PrintTopScoreTable teamList={this.state.leagueHistoryList}
-                                    description={this.state.tableDescription}/>
+                    {/*{this.state.topPlayersList.length}*/}
+                    <PrintTopScoreTable historyList={this.state.topPlayersList}
+                                        description={this.state.tableDescription}/>
                 </div>
             </div>
         );
     }
 }
+
+export default TopScorersTable;
 
 //     state = {
 //         domain: 'https://app.seker.live/fm1/',
@@ -136,4 +185,3 @@ class TopScorersTable extends React.Component {
 // }
 
 
-export default TopScorersTable;
