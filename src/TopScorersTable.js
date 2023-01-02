@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios, {get} from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import LeaguesHomePage from "./LeaguesHomePage";
 
@@ -11,7 +11,8 @@ class TopScorersTable extends React.Component{
         leagueTeams: [],
         playerList: [],
         playersGoals: new Map([]),
-        leagueHistory: []
+        leagueHistory: [],
+        top3Scorers: []
 
     }
 
@@ -42,9 +43,14 @@ class TopScorersTable extends React.Component{
                     this.getPlayers(team,leagueId)
                 })
                 this.getLeagueHistory(leagueId);
+                console.log(this.state.playersGoals)
+                console.log(this.state.top3Scorers)
 
-                //the map- playersGoals has a problem in get and set (line 59), after fixing it should be done
         })
+
+    }
+
+    getTheScorers = () => {
 
     }
 
@@ -56,11 +62,30 @@ class TopScorersTable extends React.Component{
 
                 this.state.leagueHistory.map((game) => {
                     game.goals.map((goal) => {
-                        const currentGoals = this.state.playersGoals.get(goal.scorer);
+                        let player;
+                        this.state.playersGoals.forEach((val, key) => {
+                            if (key.id === goal.scorer.id) {
+                                player = key;
+                            }
+                        });
+                        const currentGoals = this.state.playersGoals.get(player);
                         const updateGoals = currentGoals+1
-                        this.state.playersGoals.set(goal.scorer, updateGoals);
+                        this.state.playersGoals.set(player, updateGoals);
                     })
                 })
+
+                this.state.top3Scorers = ["","",""];
+                let goals = [0,0,0];
+                this.state.playersGoals.forEach((val,key) => {
+                    for (let i=0; i<3; i++) {
+                        if (val>goals[i]) {
+                            goals[i] = val
+                            this.state.top3Scorers[i] = key.firstName+" "+key.lastName
+                            break;
+                        }
+                    }
+                })
+
             })
     }
 
