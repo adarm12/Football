@@ -17,7 +17,6 @@ function PrintLeaguesTable(props) {
                 })
                 }
             </table>
-
         </div>
     )
 }

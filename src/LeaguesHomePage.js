@@ -7,6 +7,7 @@ import App from "./App";
 import GeneralStatistics from "./GeneralStatistics";
 import PrintScoreTeamHistory from "./PrintScoreTeamHistory";
 import PrintDescription from "./PrintDescription";
+import printHistoryTable from "./PrintHistoryTable";
 
 class LeaguesHomePage extends React.Component {
 
@@ -53,7 +54,6 @@ class LeaguesHomePage extends React.Component {
         // {alert(this.state.leaguesList.length)}
     }
 
-
     getPlayersAndHistory = (teamId, teamName) => {
         this.state.teamId = teamId
         this.state.teamName = teamName
@@ -61,7 +61,6 @@ class LeaguesHomePage extends React.Component {
         this.getPlayersList(teamId, teamName)
         this.getHistory(teamId, teamName)
     }
-
 
     getPlayersList = (teamId, teamName) => {
         axios.get(this.state.domain + '/squad/' + this.state.leagueId + '/' + this.state.teamId)
@@ -78,9 +77,7 @@ class LeaguesHomePage extends React.Component {
             .then((response) => {
                 this.setState(this.state.historyList = response.data)
                 this.setState(this.state.historyDescription = "This is the history of - " + this.state.teamName + " team:")
-
             })
-
     }
 
     getScore = () => {
@@ -101,19 +98,16 @@ class LeaguesHomePage extends React.Component {
                     <PrintTeamTable teamList={this.state.teamList}
                                     getPlayersAndHistory={this.getPlayersAndHistory}
                                     description={this.state.teamsDescription}/>
-
                     <PrintPlayersTable players={this.state.playerList}
                                        description={this.state.playersDescription}/>
-
-
-                        <PrintScoreTeamHistory history={this.state.historyList}
-                                               description={this.state.historyDescription}
-                                               getScore={this.getScore}/>
-                        {this.getScore} result: {this.state.homeTeamScore}
-
+                    <PrintScoreTeamHistory history={this.state.historyList}
+                                           description={this.state.historyDescription}
+                                           getScore={this.getScore}/>
+                    {this.getScore} result: {this.state.homeTeamScore}
                 </div>
             </div>
-        );
+        )
+            ;
     }
 }
 
