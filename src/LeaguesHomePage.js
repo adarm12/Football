@@ -90,6 +90,9 @@ class LeaguesHomePage extends React.Component {
     render() {
         return (
             <div className="Main">
+                <header style={{width: 170}}>
+                    <th>Leagues Home Page</th>
+                </header>
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getTeam}
                                        description={this.state.leaguesDescription}/>
@@ -101,7 +104,7 @@ class LeaguesHomePage extends React.Component {
                     <PrintScoreTeamHistory history={this.state.historyList}
                                            description={this.state.historyDescription}
                                            getScore={this.getScore}/>
-                    {this.getScore} result: {this.state.homeTeamScore}
+                    {/*{this.getScore} result: {this.state.homeTeamScore}*/}
                 </div>
             </div>
         );

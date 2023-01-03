@@ -34,19 +34,20 @@ function PrintHistoryTable(props) {
                 </td>
                 <td>
                     <header> Home Team Score</header>
-                    {/*{props.history.map((history, index) => {*/}
-                    {/*    return (*/}
-                    {/*        history.goals.map((cell, cellIndex) => {*/}
-                    {/*            return (*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>*/}
-                    {/*                        {cell.id}*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*            )})*/}
-                    {/*    )*/}
-                    {/*})*/}
-                    {/*}*/}
+                    {props.historyList.map((history, index) => {
+                        return (
+                            history.goals.map((cell, cellIndex) => {
+                                return (
+                                    <tr>
+                                        <td>
+                                            {cell.home === true? "1" : "0"}
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        )
+                    })
+                    }
                 </td>
                 <td>
                     <header>Away Team Score</header>
@@ -64,6 +65,20 @@ function PrintHistoryTable(props) {
                 <td>
                     <header>
                         Away Team Score
+                        {props.historyList.map((history, index) => {
+                            return (
+                                history.goals.map((cell, cellIndex) => {
+                                    return (
+                                        <tr>
+                                            <td>
+                                                {cell.home === false? "1" : "0"}
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            )
+                        })
+                        }
                     </header>
                 </td>
 

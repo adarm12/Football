@@ -1,15 +1,19 @@
 .App {
 
 }
-header{
+
+th{
+    font-size: 25px;
+}
+
+header {
     text-align-all: center;
     font-size: 20px;
     margin: auto;
     width: 150px;
     text-align: center;
     border-collapse: collapse;
-    border: 1px solid black;}
-
+}
 /*div{*/
 /*    margin: auto;*/
 /*    width: 900px;*/
@@ -27,11 +31,12 @@ body {
     font-family: "Gabriola", "Assistant SemiBold";
     text-align: center;
 }
+
 table {
     text-align-all: center;
     font-size: 20px;
     margin: auto;
-    width: 250px;
+    width: 300px;
     text-align: center;
     border-collapse: collapse;
     border: 1px solid black;

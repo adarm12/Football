@@ -2,7 +2,7 @@ import React from "react";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import axios from "axios";
 
-class generalStatistics extends React.Component{
+class generalStatistics extends React.Component {
 
     state = {
         domain: 'https://app.seker.live/fm1/',
@@ -30,7 +30,7 @@ class generalStatistics extends React.Component{
 
     getLeagueHistory = (leagueId) => {
 
-        axios.get(this.state.domain+"history/"+leagueId)
+        axios.get(this.state.domain + "history/" + leagueId)
             .then((response) => {
 
                 this.setState({
@@ -57,10 +57,9 @@ class generalStatistics extends React.Component{
         this.state.leagueHistory.map((game) => {
             const gameGoals = game.goals;
             gameGoals.map((goal) => {
-                if (goal.minute<=45) {
+                if (goal.minute <= 45) {
                     counterFirstHalf++
-                }
-                else {
+                } else {
                     counterSecondHalf++
                 }
             })
@@ -72,7 +71,6 @@ class generalStatistics extends React.Component{
     }
 
 
-
     earliestAndLatestGoal = () => {
         let earliestMin = 100;
         let earliestGoal;
@@ -82,11 +80,11 @@ class generalStatistics extends React.Component{
         this.state.leagueHistory.map((game) => {
             const gameGoals = game.goals;
             gameGoals.map((goal) => {
-                if (goal.minute<earliestMin) {
+                if (goal.minute < earliestMin) {
                     earliestMin = goal.minute;
                     earliestGoal = goal;
                 }
-                if (goal.minute>latestMin) {
+                if (goal.minute > latestMin) {
                     latestMin = goal.minute;
                     latestGoal = goal;
                 }
@@ -98,15 +96,15 @@ class generalStatistics extends React.Component{
     }
 
     bestAndWorstRound = () => {
-        const rounds = this.state.leagueHistory[this.state.leagueHistory.length-1].round;
-        let goalsCounters = new Array(rounds+1);
-        for(let i=0; i<goalsCounters.length; i++) {
+        const rounds = this.state.leagueHistory[this.state.leagueHistory.length - 1].round;
+        let goalsCounters = new Array(rounds + 1);
+        for (let i = 0; i < goalsCounters.length; i++) {
             goalsCounters[i] = 0;
         }
 
         this.state.leagueHistory.map((game) => {
             const goals = game.goals.length;
-            goalsCounters[game.round]+=goals;
+            goalsCounters[game.round] += goals;
         })
 
         const maxGoals = Math.max(...goalsCounters);
@@ -123,28 +121,30 @@ class generalStatistics extends React.Component{
     render() {
         return (
             <div>
-                <div>
-                    General statistics
-                </div>
+                <header>
+                    <th> General statistics</th>
+                </header>
                 {this.state.leaguesList.map((league) => {
                     return (
-                        <button onClick= {() => {
+                        <table onClick={() => {
                             this.getLeagueHistory(league.id)
-                        }}> {league.name}</button>
+                        }}> {league.name}</table>
                     )
                 })}
 
 
                 {
-                    this.state.generalStats.flag == true?
-                        <div>
+                    this.state.generalStats.flag == true ?
+                        <table>
                             <div>goals scored in the first half: {this.state.generalStats.firstHalfGoals}</div>
                             <div>goals scored in the second half: {this.state.generalStats.secondHalfGoals}</div>
-                            <div>earliest goal scored at minute: {this.state.generalStats.earliestGoal.minute} by {this.state.generalStats.earliestGoal.scorer.firstName} {this.state.generalStats.earliestGoal.scorer.lastName}</div>
-                            <div>latest goal scored at minute: {this.state.generalStats.latestGoal.minute} by {this.state.generalStats.latestGoal.scorer.firstName} {this.state.generalStats.latestGoal.scorer.lastName}</div>
+                            <div>earliest goal scored at
+                                minute: {this.state.generalStats.earliestGoal.minute} by {this.state.generalStats.earliestGoal.scorer.firstName} {this.state.generalStats.earliestGoal.scorer.lastName}</div>
+                            <div>latest goal scored at
+                                minute: {this.state.generalStats.latestGoal.minute} by {this.state.generalStats.latestGoal.scorer.firstName} {this.state.generalStats.latestGoal.scorer.lastName}</div>
                             <div>most goals were in round: {this.state.generalStats.mostGoalsRound}</div>
                             <div>less goals were in round: {this.state.generalStats.lessGoalsRound}</div>
-                        </div>
+                        </table>
                         :
                         <div></div>
                 }

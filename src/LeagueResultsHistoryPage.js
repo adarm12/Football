@@ -14,6 +14,7 @@ class LeagueResultsHistoryPage extends React.Component {
         leaguesDescription: "These are the existing leagues:",
         historyList: [],
         tableDescription: "",
+
     }
 
     //https://app.seker.live/fm1/squad/2/560
@@ -37,23 +38,16 @@ class LeagueResultsHistoryPage extends React.Component {
         axios.get(this.state.domain + '/history/' + this.state.leagueId)
             .then((response) => {
                 this.setState(this.state.historyList = response.data)
-                this.getNewHistoryList(response.data)
                 this.setState(this.state.tableDescription = "These are the" + this.state.leagueName + " league history results")
             })
-    }
-    getNewHistoryList = (history) => {
-        let list = [];
-        for (let i = 0; i < history.length; i++) {
-            for (let j = 0; j < history[i].goals.length; j++) {
-                list.push(history[i].goals[j].scorer)
-            }
-        }
-        // this.TopScore(list)
     }
 
     render() {
         return (
             <div className="Main">
+                <header style={{width: 200}}>
+                    <th>Leagues Results History</th>
+                </header>
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getLeagueHistory}
                                        description={this.state.leaguesDescription}/>

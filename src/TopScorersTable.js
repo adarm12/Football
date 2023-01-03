@@ -1,7 +1,7 @@
 import React from "react";
 import axios, {get} from "axios";
 
-class TopScorersTable extends React.Component{
+class TopScorersTable extends React.Component {
 
     state = {
         domain: 'https://app.seker.live/fm1/',
@@ -10,8 +10,7 @@ class TopScorersTable extends React.Component{
         playerList: [],
         playersGoals: new Map([]),
         leagueHistory: [],
-        topScorers: {
-        }
+        topScorers: {}
 
     }
 
@@ -30,7 +29,7 @@ class TopScorersTable extends React.Component{
 
     getScorers = (leagueId) => {
 
-        axios.get(this.state.domain+"teams/"+leagueId)
+        axios.get(this.state.domain + "teams/" + leagueId)
             .then((response) => {
                 //debugger
                 this.state.leagueTeams = response.data
@@ -38,15 +37,15 @@ class TopScorersTable extends React.Component{
                     leaguesList: []
                 })
                 this.state.leagueTeams.map((team) => {
-                    this.getPlayers(team,leagueId)
+                    this.getPlayers(team, leagueId)
                 })
                 this.getGoalsAndTop3(leagueId);
                 console.log(this.state.playersGoals)
-        })
+            })
     }
 
     getGoalsAndTop3 = (leagueId) => {
-        axios.get(this.state.domain+"history/"+leagueId)
+        axios.get(this.state.domain + "history/" + leagueId)
             .then((response) => {
                 this.state.leagueHistory = response.data
 
@@ -60,26 +59,26 @@ class TopScorersTable extends React.Component{
                             }
                         });
                         const currentGoals = this.state.playersGoals.get(player);
-                        const updateGoals = currentGoals+1;
+                        const updateGoals = currentGoals + 1;
                         this.state.playersGoals.set(player, updateGoals);
                     })
                     flag = true;
                 })
 
                 if (flag) {  // find the top 3 from map
-                    alert("ok")
-                    let top3Scorers = ["","",""];
-                    let top3Goals = [0,0,0];
+                    // alert("ok")
+                    let top3Scorers = ["", "", ""];
+                    let top3Goals = [0, 0, 0];
 
 
                     for (const key of this.state.playersGoals.keys()) {
-                             for (let i=0; i<3; i++) {
-                                 if (this.state.playersGoals.get(key)>top3Goals[i]) {
-                                     top3Goals[i] = this.state.playersGoals.get(key)
-                                     top3Scorers[i] = key.firstName+"  "+key.lastName
-                                     break;
-                                 }
+                        for (let i = 0; i < 3; i++) {
+                            if (this.state.playersGoals.get(key) > top3Goals[i]) {
+                                top3Goals[i] = this.state.playersGoals.get(key)
+                                top3Scorers[i] = key.firstName + "  " + key.lastName
+                                break;
                             }
+                        }
                     }
                     console.log(top3Goals)
                     console.log(top3Scorers)
@@ -97,8 +96,8 @@ class TopScorersTable extends React.Component{
             })
     }
 
-    getPlayers = (team,leagueId) => {
-        axios.get(this.state.domain+"squad/"+leagueId+"/"+team.id)
+    getPlayers = (team, leagueId) => {
+        axios.get(this.state.domain + "squad/" + leagueId + "/" + team.id)
             .then((response) => {
                 this.state.playerList = response.data
 
@@ -112,16 +111,16 @@ class TopScorersTable extends React.Component{
     render() {
         return (
             <div className={"main"}>
-                <div>
-                    Top scorers table
-                </div>
+                <header>
+                    <th> Top scorers table</th>
+                </header>
 
                 {this.state.leaguesList.map((league) => {
                     return (
                         <button onClick={() => this.getScorers(league.id)}> {league.name}</button>
                     )
                 })}
-                <pre>{JSON.stringify(this.state.topScorers,null,3).substring(1).slice(0, -1)}</pre>
+                <pre>{JSON.stringify(this.state.topScorers, null, 3).substring(1).slice(0, -1)}</pre>
             </div>
         );
     }
