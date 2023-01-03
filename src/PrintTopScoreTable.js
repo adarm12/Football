@@ -4,6 +4,7 @@ import React from "react";
 function PrintTopScoreTable(props) {
     return (
         <div>
+
             <PrintDescription description={props.description}/>
             <table className="teamTable">
                 <td>

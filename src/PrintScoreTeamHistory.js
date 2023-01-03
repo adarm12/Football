@@ -11,7 +11,6 @@ function PrintScoreTeamHistory(props) {
 
             <table>
                 <header>
-                    {/*<td>*/}
                     {/*    history: {props.history.length}*/}
                     <td>
                         Round
