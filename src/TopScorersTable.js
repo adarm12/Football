@@ -93,6 +93,9 @@ class TopScorersTable extends React.Component {
         this.setState(this.state.topPlayersList = newTopPlayersList)
     }
 
+
+
+
     render() {
         return (
             <div className="Main">
@@ -103,10 +106,18 @@ class TopScorersTable extends React.Component {
                     <PrintTopScoreTable historyList={this.state.topPlayersList}
                                         description={this.state.tableDescription}/>
                 </div>
+
+                {this.state.leaguesList.map((league) => {
+                    return (
+                        <button onClick={() => this.getScorers(league.id)}> {league.name}</button>
+                    )
+                })}
             </div>
         );
     }
+
 }
+
 
 export default TopScorersTable;
 
