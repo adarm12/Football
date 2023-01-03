@@ -135,7 +135,7 @@ class generalStatistics extends React.Component {
 
                 {
                     this.state.generalStats.flag == true ?
-                        <table>
+                        <table style={{width:300}}>
                             <div>goals scored in the first half: {this.state.generalStats.firstHalfGoals}</div>
                             <div>goals scored in the second half: {this.state.generalStats.secondHalfGoals}</div>
                             <div>earliest goal scored at

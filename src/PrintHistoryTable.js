@@ -3,7 +3,7 @@ import PrintDescription from "./PrintDescription";
 
 function PrintHistoryTable(props) {
     return (
-        <div>
+        <div >
             <PrintDescription description={props.description}/>
             <table className="historyLeaguesTable">
                 <td>
@@ -13,6 +13,19 @@ function PrintHistoryTable(props) {
                             <tr>
                                 <td>
                                     {history.round}
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
+                </td>
+                <td>
+                    <header> Games Number</header>
+                    {props.historyList.map((history) => {
+                        return (
+                            <tr>
+                                <td>
+                                    {history.goals.length}
                                 </td>
                             </tr>
                         )
@@ -34,23 +47,20 @@ function PrintHistoryTable(props) {
                 </td>
                 <td>
                     <header> Home Team Score</header>
-                    {props.historyList.map((history, index) => {
+                    {props.homeScoreList.map((homeScoreList) => {
                         return (
-                            history.goals.map((cell, cellIndex) => {
-                                return (
-                                    <tr>
-                                        <td>
-                                            {cell.home === true? "1" : "0"}
-                                        </td>
-                                    </tr>
-                                )
-                            })
+                            <tr>
+                                <td>
+                                    {homeScoreList}
+                                </td>
+                            </tr>
                         )
                     })
                     }
+
                 </td>
                 <td>
-                    <header>Away Team Score</header>
+                    <header>Away Team Name</header>
                     {props.historyList.map((history) => {
                         return (
                             <tr>
@@ -63,23 +73,18 @@ function PrintHistoryTable(props) {
                     }
                 </td>
                 <td>
-                    <header>
-                        Away Team Score
-                        {props.historyList.map((history, index) => {
-                            return (
-                                history.goals.map((cell, cellIndex) => {
-                                    return (
-                                        <tr>
-                                            <td>
-                                                {cell.home === false? "1" : "0"}
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            )
-                        })
-                        }
-                    </header>
+                    <header>Away Team Score</header>
+                    {props.awayScoreList.map((awayScoreList) => {
+                        return (
+                            <tr>
+                                <td>
+                                    {awayScoreList}
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
+
                 </td>
 
             </table>

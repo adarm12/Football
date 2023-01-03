@@ -21,6 +21,19 @@ function PrintScoreTeamHistory(props) {
                     }
                 </td>
                 <td>
+                    <header> Games Number</header>
+                    {props.history.map((history) => {
+                        return (
+                            <tr>
+                                <td>
+                                    {history.goals.length}
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
+                </td>
+                <td>
                     <header> Home Team</header>
                     {props.history.map((history) => {
                         return (
@@ -35,17 +48,13 @@ function PrintScoreTeamHistory(props) {
                 </td>
                 <td>
                     <header> Home Team Win</header>
-                    {props.history.map((history, index) => {
+                    {props.homeScoreList.map((homeScoreList) => {
                         return (
-                            history.goals.map((cell, cellIndex) => {
-                                return (
-                                    <tr>
-                                        <td>
-                                            {cell.id}
-                                        </td>
-                                    </tr>
-                                )
-                            })
+                            <tr>
+                                <td>
+                                    {homeScoreList}
+                                </td>
+                            </tr>
                         )
                     })
                     }
@@ -65,23 +74,20 @@ function PrintScoreTeamHistory(props) {
                 </td>
                 <td>
                     <header> Away Team Win</header>
-                    {/*{props.history.map((history, index) => {*/}
-                    {/*    return (*/}
-                    {/*        history.goals.map((cell, cellIndex) => {*/}
-                    {/*            return (*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>*/}
-                    {/*                        {cell.id}*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*            )})*/}
-                    {/*    )*/}
-                    {/*})*/}
-                    {/*}*/}
+                    {props.awayScoreList.map((awayScoreList) => {
+                        return (
+                            <tr>
+                                <td>
+                                    {awayScoreList}
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
                 </td>
-        </table>
-</div>
-)
+            </table>
+        </div>
+    )
 }
 
 export default PrintScoreTeamHistory;

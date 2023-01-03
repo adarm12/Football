@@ -3,11 +3,8 @@ import axios from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import PrintPlayersTable from "./PrintPlayersTable";
 import PrintTeamTable from "./PrintTeamTable";
-import App from "./App";
-import GeneralStatistics from "./GeneralStatistics";
 import PrintScoreTeamHistory from "./PrintScoreTeamHistory";
-import PrintDescription from "./PrintDescription";
-import printHistoryTable from "./PrintHistoryTable";
+
 
 class LeaguesHomePage extends React.Component {
 
@@ -25,8 +22,9 @@ class LeaguesHomePage extends React.Component {
         playersDescription: "",
         historyList: [],
         historyDescription: "",
-        homeTeamScore: 0,
-        awayTeamScore: 0,
+        scoreList: [],
+        homeTeamScoreList: [],
+        awayTeamScoreList: [],
     }
 
     //https://app.seker.live/fm1/squad/2/560
@@ -74,17 +72,74 @@ class LeaguesHomePage extends React.Component {
         axios.get(this.state.domain + '/history/' + this.state.leagueId + '/' + this.state.teamId)
             .then((response) => {
                 this.setState(this.state.historyList = response.data)
+                this.getNewHistoryList(response.data)
+                this.countHomeTeamScore(response.data)
+                this.countAwayTeamScore(response.data)
                 this.setState(this.state.historyDescription = "This is the history of - " + this.state.teamName + " team:")
             })
     }
+    getNewHistoryList = (history) => {
+        let list = [];
+        for (let i = 0; i < history.length; i++) {
+            for (let j = 0; j < history[i].goals.length; j++) {
+                list.push(history[i].goals[j])
+            }
+        }
+        this.getTeamsScore(list)
+    }
+    //https://app.seker.live/fm1/squad/2/560
 
-    getScore = () => {
-        if (this.state.historyList.home === true) {
-            this.state.homeTeamScore++
+
+    getTeamsScore = (list) => {
+        let scoreList = [];
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].home === true)
+                scoreList.push(1)
+            else if (list[i].home === false)
+                scoreList.push(0)
+
         }
-        if (this.state.historyList.home === false) {
-            this.state.awayTeamScore++
+        this.setState(this.state.scoreList = scoreList)
+        // alert(this.state.scoreList[1])
+        // alert(this.state.scoreList.length)
+    }
+
+    countHomeTeamScore = (history) => {
+        let score = [];
+        let counter = 0;
+        for (let i = 0; i < history.length; i++) {
+            let homeScore = 0;
+            for (let j = 0; j < history[i].goals.length; j++) {
+                if (this.state.scoreList[counter] === 1) {
+                    homeScore++
+                    counter++
+                } else {
+                    counter++
+                }
+            }
+            score.push(homeScore)
         }
+        this.setState(this.state.homeTeamScoreList = score)
+    }
+
+    countAwayTeamScore = (history) => {
+        let score = [];
+        let counter = 0;
+        for (let i = 0; i < history.length; i++) {
+            let awayScore = 0;
+            for (let j = 0; j < history[i].goals.length; j++) {
+                if (this.state.scoreList[counter] === 0) {
+                    awayScore++
+                    counter++
+                } else {
+                    counter++
+                }
+            }
+            score.push(awayScore)
+        }
+        this.setState(this.state.awayTeamScoreList = score)
+        // alert(this.state.awayScoreList[6])
+        // alert(this.state.awayScoreList.length)
     }
 
     render() {
@@ -103,8 +158,9 @@ class LeaguesHomePage extends React.Component {
                                        description={this.state.playersDescription}/>
                     <PrintScoreTeamHistory history={this.state.historyList}
                                            description={this.state.historyDescription}
-                                           getScore={this.getScore}/>
-                    {/*{this.getScore} result: {this.state.homeTeamScore}*/}
+                                           homeScoreList={this.state.homeTeamScoreList}
+                                           awayScoreList={this.state.awayTeamScoreList}
+                    />
                 </div>
             </div>
         );
