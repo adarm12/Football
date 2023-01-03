@@ -18,20 +18,6 @@ function PrintTopScoreTable(props) {
                         )
                     })
                     }
-                    {/*{props.historyList.map((team, index) => {*/}
-                    {/*    return (*/}
-                    {/*        team.goals.map((list, cellIndex) => {*/}
-                    {/*            return (*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>*/}
-                    {/*                        {list.scorer.firstName} {list.scorer.lastName}*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*            )*/}
-                    {/*        })*/}
-                    {/*    )*/}
-                    {/*})*/}
-                    {/*}*/}
                 </td>
                 <td>
                     goals Number

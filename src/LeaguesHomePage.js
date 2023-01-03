@@ -28,10 +28,7 @@ class LeaguesHomePage extends React.Component {
         homeTeamScore: 0,
         awayTeamScore: 0,
     }
-
     //https://app.seker.live/fm1/squad/2/560
-
-
     componentDidMount() {
         this.getLeagues();
     }
@@ -106,8 +103,7 @@ class LeaguesHomePage extends React.Component {
                     {this.getScore} result: {this.state.homeTeamScore}
                 </div>
             </div>
-        )
-            ;
+        );
     }
 }
 

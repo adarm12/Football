@@ -1,4 +1,3 @@
-import printTeamTable from "./PrintTeamTable";
 import React from "react";
 import PrintDescription from "./PrintDescription";
 
