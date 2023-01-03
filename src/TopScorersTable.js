@@ -1,10 +1,5 @@
 import React from "react";
 import axios, {get} from "axios";
-import PrintLeaguesTable from "./PrintLeaguesTable";
-import LeaguesHomePage from "./LeaguesHomePage";
-import {wait} from "@testing-library/user-event/dist/utils";
-import GetLeagues from "./GetLeagues";
-import getLeagues from "./GetLeagues";
 
 class TopScorersTable extends React.Component{
 
@@ -21,12 +16,10 @@ class TopScorersTable extends React.Component{
     }
 
     componentDidMount() {
-
         this.getLeagues()
     }
 
     getLeagues = () => {
-
         axios.get(this.state.domain + 'leagues')
             .then((response) => {
                 this.setState({
@@ -49,15 +42,8 @@ class TopScorersTable extends React.Component{
                 })
                 this.getGoalsAndTop3(leagueId);
                 console.log(this.state.playersGoals)
-
         })
-
     }
-
-    getTheScorers = () => {
-
-    }
-
 
     getGoalsAndTop3 = (leagueId) => {
         axios.get(this.state.domain+"history/"+leagueId)
@@ -107,11 +93,8 @@ class TopScorersTable extends React.Component{
                     this.setState({
                         topScorers: finalJson
                     })
-
-
                 }
             })
-
     }
 
     getPlayers = (team,leagueId) => {
@@ -124,12 +107,7 @@ class TopScorersTable extends React.Component{
                 })
 
             })
-
-
     }
-
-
-
 
     render() {
         return (
@@ -143,12 +121,10 @@ class TopScorersTable extends React.Component{
                         <button onClick={() => this.getScorers(league.id)}> {league.name}</button>
                     )
                 })}
-
                 <pre>{JSON.stringify(this.state.topScorers,null,3).substring(1).slice(0, -1)}</pre>
             </div>
         );
     }
-
 }
 
 

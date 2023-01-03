@@ -2,10 +2,11 @@ import React from "react";
 import PrintDescription from "./PrintDescription";
 
 function PrintPlayersTable(props) {
+
     return (
-        <div>
+        <table>
             <PrintDescription description={props.description}/>
-            <table className="playersTable">
+            <table style={{width: 400}} className="playersTable">
                 {props.players.map((player) => {
                     return (
                         <tr>
@@ -17,7 +18,7 @@ function PrintPlayersTable(props) {
                 })
                 }
             </table>
-        </div>
+        </table>
     )
 }
 
