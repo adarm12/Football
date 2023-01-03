@@ -2,6 +2,9 @@ import React from "react";
 import axios, {get} from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import LeaguesHomePage from "./LeaguesHomePage";
+import {wait} from "@testing-library/user-event/dist/utils";
+import GetLeagues from "./GetLeagues";
+import getLeagues from "./GetLeagues";
 
 class TopScorersTable extends React.Component{
 
@@ -12,11 +15,13 @@ class TopScorersTable extends React.Component{
         playerList: [],
         playersGoals: new Map([]),
         leagueHistory: [],
-        top3Scorers: []
+        topScorers: {
+        }
 
     }
 
     componentDidMount() {
+
         this.getLeagues()
     }
 
@@ -42,7 +47,7 @@ class TopScorersTable extends React.Component{
                 this.state.leagueTeams.map((team) => {
                     this.getPlayers(team,leagueId)
                 })
-                this.getLeagueHistory(leagueId);
+                this.getGoalsAndTop3(leagueId);
                 console.log(this.state.playersGoals)
                 console.log(this.state.top3Scorers)
 
@@ -55,12 +60,13 @@ class TopScorersTable extends React.Component{
     }
 
 
-    getLeagueHistory = (leagueId) => {
+    getGoalsAndTop3 = (leagueId) => {
         axios.get(this.state.domain+"history/"+leagueId)
             .then((response) => {
                 this.state.leagueHistory = response.data
 
-                this.state.leagueHistory.map((game) => {
+                let flag = false;
+                this.state.leagueHistory.map((game) => {  //fill map with players and their goals
                     game.goals.map((goal) => {
                         let player;
                         this.state.playersGoals.forEach((val, key) => {
@@ -69,24 +75,44 @@ class TopScorersTable extends React.Component{
                             }
                         });
                         const currentGoals = this.state.playersGoals.get(player);
-                        const updateGoals = currentGoals+1
+                        const updateGoals = currentGoals+1;
                         this.state.playersGoals.set(player, updateGoals);
                     })
+                    flag = true;
                 })
 
-                this.state.top3Scorers = ["","",""];
-                let goals = [0,0,0];
-                this.state.playersGoals.forEach((val,key) => {
-                    for (let i=0; i<3; i++) {
-                        if (val>goals[i]) {
-                            goals[i] = val
-                            this.state.top3Scorers[i] = key.firstName+" "+key.lastName
-                            break;
-                        }
+                if (flag) {  // find the top 3 from map
+                    alert("ok")
+                    let top3Scorers = ["","",""];
+                    let top3Goals = [0,0,0];
+
+
+                    for (const key of this.state.playersGoals.keys()) {
+                             for (let i=0; i<3; i++) {
+                                 if (this.state.playersGoals.get(key)>top3Goals[i]) {
+                                     top3Goals[i] = this.state.playersGoals.get(key)
+                                     top3Scorers[i] = key.firstName+"  "+key.lastName
+                                     break;
+                                 }
+                            }
                     }
-                })
+                    console.log(top3Goals)
+                    console.log(top3Scorers)
 
+                    const finalJson = top3Scorers.reduce((acc, key, index) => {
+                        acc[key] = top3Goals[index];
+                        return acc;
+                    }, {});
+                    console.log(finalJson)
+
+                    this.setState({
+                        topScorers: finalJson
+                    })
+
+
+                }
             })
+
     }
 
     getPlayers = (team,leagueId) => {
@@ -118,6 +144,8 @@ class TopScorersTable extends React.Component{
                         <button onClick={() => this.getScorers(league.id)}> {league.name}</button>
                     )
                 })}
+
+                {JSON.stringify(this.state.topScorers,null,3)}
             </div>
         );
     }
