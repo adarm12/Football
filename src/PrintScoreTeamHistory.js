@@ -47,7 +47,7 @@ function PrintScoreTeamHistory(props) {
                     }
                 </td>
                 <td>
-                    <header> Home Team Win</header>
+                    <header> Home Team Goals</header>
                     {props.homeScoreList.map((homeScoreList) => {
                         return (
                             <tr>
@@ -73,7 +73,7 @@ function PrintScoreTeamHistory(props) {
                     }
                 </td>
                 <td>
-                    <header> Away Team Win</header>
+                    <header> Away Team Goals</header>
                     {props.awayScoreList.map((awayScoreList) => {
                         return (
                             <tr>

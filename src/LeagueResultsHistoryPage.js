@@ -41,8 +41,8 @@ class LeagueResultsHistoryPage extends React.Component {
             .then((response) => {
                 this.setState(this.state.historyList = response.data)
                 this.getNewHistoryList(response.data)
-                this.countHomeScore(response.data)
-                this.countAwayScore(response.data)
+                this.countHomeGoals(response.data)
+                this.countAwayGoals(response.data)
                 this.setState(this.state.tableDescription = "These are the" + this.state.leagueName + " league history results")
             })
     }
@@ -53,12 +53,12 @@ class LeagueResultsHistoryPage extends React.Component {
                 list.push(history[i].goals[j])
             }
         }
-        this.getScore(list)
+        this.getGoals(list)
     }
     //https://app.seker.live/fm1/squad/2/560
 
 
-    getScore = (list) => {
+    getGoals = (list) => {
         let scoreList = [];
         for (let i = 0; i < list.length; i++) {
             if (list[i].home === true)
@@ -72,7 +72,7 @@ class LeagueResultsHistoryPage extends React.Component {
         // alert(this.state.scoreList.length)
     }
 
-    countHomeScore = (history) => {
+    countHomeGoals = (history) => {
         let score = [];
         let counter = 0;
         for (let i = 0; i < history.length; i++) {
@@ -90,7 +90,7 @@ class LeagueResultsHistoryPage extends React.Component {
         this.setState(this.state.homeScoreList = score)
     }
 
-    countAwayScore = (history) => {
+    countAwayGoals = (history) => {
         let score = [];
         let counter = 0;
         for (let i = 0; i < history.length; i++) {

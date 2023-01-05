@@ -4,21 +4,21 @@ import PrintDescription from "./PrintDescription";
 function PrintPlayersTable(props) {
 
     return (
-        <table>
+        <div>
             <PrintDescription description={props.description}/>
-            <table style={{width: 400}} className="playersTable">
-                {props.players.map((player) => {
-                    return (
-                        <tr>
-                            <td>
-                                {player.firstName} {player.lastName}
-                            </td>
-                        </tr>
-                    )
-                })
-                }
+            <table style={{margin: "auto"}} className="playersTable">
+                    {props.players.map((player) => {
+                        return (
+                            <tr>
+                                <td>
+                                    {player.firstName} {player.lastName}
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
             </table>
-        </table>
+        </div>
     )
 }
 
