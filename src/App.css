@@ -48,14 +48,14 @@ th, td {
     width: 200px;
 }
 
-tr:nth-child(odd){
+tr:nth-child(even){
     background-color: #ddefee;
 }
 .TeamTable{
     width: 200px;
     padding: 10px;
 }
-.TeamScoreHistory,.historyLeaguesTable{
+.TeamScoreHistory,.historyLeaguesTable,.teamTable{
     width: auto;
     font-size: 15px;
     margin-outside: 50px;

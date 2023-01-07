@@ -6,9 +6,9 @@ function PrintTopScoreTable(props) {
         <div>
 
             <PrintDescription description={props.description}/>
-            <table style={{width : 250}} className="teamTable">
+            <table className="teamTable">
                 <td>
-                    Player Name
+                    <header>Player Name</header>
                     {props.historyList.map((historyList) => {
                         return (
                             <tr>
@@ -21,7 +21,7 @@ function PrintTopScoreTable(props) {
                     }
                 </td>
                 <td>
-                    goals Number
+                    <header>Goals Number</header>
                     {props.historyList.map((historyList) => {
                         return (
                             <tr>
