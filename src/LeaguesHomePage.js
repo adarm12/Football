@@ -152,7 +152,7 @@ class LeaguesHomePage extends React.Component {
             }
         }
         this.setState(this.state.homeTeamScoreList = homeScore)
-        alert(this.state.homeTeamScoreList.length)
+        // alert(this.state.homeTeamScoreList.length)
         this.setState(this.state.awayTeamScoreList = awayScore)
     }
 
