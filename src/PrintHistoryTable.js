@@ -4,8 +4,6 @@ import PrintDescription from "./PrintDescription";
 function PrintHistoryTable(props) {
     return (
         <div>
-
-
             <PrintDescription description={props.description}/>
             <table className="historyLeaguesTable">
                 <td>
@@ -86,9 +84,20 @@ function PrintHistoryTable(props) {
                         )
                     })
                     }
-
                 </td>
-
+                <td>
+                    <header>Difference</header>
+                    {props.difference.map((difference) => {
+                        return (
+                            <tr>
+                                <td>
+                                    {difference}
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
+                </td>
             </table>
         </div>
     )

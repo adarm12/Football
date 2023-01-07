@@ -17,6 +17,8 @@ class LeagueResultsHistoryPage extends React.Component {
         scoreList: [],
         homeScoreList: [],
         awayScoreList: [],
+        differenceList: [],
+
     }
 
     //https://app.seker.live/fm1/squad/2/560
@@ -43,6 +45,7 @@ class LeagueResultsHistoryPage extends React.Component {
                 this.getNewHistoryList(response.data)
                 this.countHomeGoals(response.data)
                 this.countAwayGoals(response.data)
+                this.differenceCounter()
                 this.setState(this.state.tableDescription = "These are the" + this.state.leagueName + " league history results")
             })
     }
@@ -111,6 +114,17 @@ class LeagueResultsHistoryPage extends React.Component {
         // alert(this.state.awayScoreList.length)
     }
 
+    differenceCounter = () => {
+        let difference = [];
+        let value = 0;
+        for (let i = 0; i <this.state.homeScoreList.length; i++) {
+            value = this.state.homeScoreList[i] - this.state.awayScoreList[i]
+            difference.push(value)
+        }
+        this.setState(this.state.differenceList = difference)
+    }
+
+
     render() {
         return (
             <div className="Main">
@@ -119,13 +133,11 @@ class LeagueResultsHistoryPage extends React.Component {
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getLeagueHistory}
                                        description={this.state.leaguesDescription}/>
-
                     <PrintHistoryTable historyList={this.state.historyList}
                                        homeScoreList={this.state.homeScoreList}
                                        awayScoreList={this.state.awayScoreList}
+                                       difference={this.state.differenceList}
                                        description={this.state.tableDescription}/>
-
-
                 </div>
             </div>
         );

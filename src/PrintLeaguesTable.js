@@ -5,7 +5,7 @@ function PrintLeaguesTable(props) {
     return(
         <div>
             <PrintDescription description={props.description}/>
-            <table className="leaguesTable">
+            <table style={{width: 150}} className="leaguesTable">
                 {props.leaguesList.map((league) => {
                     return (
                         <tr onClick={() => props.getTeams(league.id, league.name)}>
