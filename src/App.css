@@ -68,7 +68,7 @@ tr:nth-child(even) {
     background-color: #FF3333;
 }
 
-tr:nth-child(0) {
+.TeamScoreHistory tr:nth-child(2) {
     background-color: #9bb3e0;
 }
 
