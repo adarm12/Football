@@ -34,8 +34,6 @@ class LeagueResultsHistoryPage extends React.Component {
             });
     }
 
-    //https://app.seker.live/fm1/history/2/500
-
     getLeagueHistory = (id, name) => {
         this.state.leagueId = id
         this.state.leagueName = name
@@ -58,8 +56,6 @@ class LeagueResultsHistoryPage extends React.Component {
         }
         this.getGoals(list)
     }
-    //https://app.seker.live/fm1/squad/2/560
-
 
     getGoals = (list) => {
         let scoreList = [];
@@ -117,7 +113,7 @@ class LeagueResultsHistoryPage extends React.Component {
     differenceCounter = () => {
         let difference = [];
         let value = 0;
-        for (let i = 0; i <this.state.homeScoreList.length; i++) {
+        for (let i = 0; i < this.state.homeScoreList.length; i++) {
             value = this.state.homeScoreList[i] - this.state.awayScoreList[i]
             difference.push(value)
         }
@@ -134,11 +130,12 @@ class LeagueResultsHistoryPage extends React.Component {
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getLeagueHistory}
                                        description={this.state.leaguesDescription}/>
-                    <PrintHistoryTable historyList={this.state.historyList}
-                                       homeScoreList={this.state.homeScoreList}
-                                       awayScoreList={this.state.awayScoreList}
-                                       difference={this.state.differenceList}
-                                       description={this.state.tableDescription}/>
+                    {this.state.historyList.length > 0 ?
+                        <PrintHistoryTable historyList={this.state.historyList}
+                                           homeScoreList={this.state.homeScoreList}
+                                           awayScoreList={this.state.awayScoreList}
+                                           difference={this.state.differenceList}
+                                           description={this.state.tableDescription}/> : <div></div>}
                 </div>
             </div>
         );

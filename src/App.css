@@ -51,7 +51,6 @@ th, td {
 tr:nth-child(odd){
     background-color: #ddefee;
 }
-
 .TeamTable{
     width: 200px;
     padding: 10px;
@@ -70,7 +69,6 @@ tr:nth-child(0)
     background-color: #9bb3e0;
 }
 
-
 table.playersTable {
     margin-left: 10px;
     width: 200px;
@@ -79,17 +77,9 @@ table.playersTable {
 
 }
 
-/*td, tr {*/
-/*    border: 1px solid black;*/
-/*    padding: 5px;*/
-/*    width: 150px;*/
-/*}*/
-
 /*tr:hover {*/
 /*    background-color: #54a64d;*/
 /*}*/
-
-
 
 
 #description {
