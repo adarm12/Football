@@ -10,9 +10,7 @@ function PrintPlayersTable(props) {
                     {props.players.map((player) => {
                         return (
                             <tr>
-                                <td>
                                     {player.firstName} {player.lastName}
-                                </td>
                             </tr>
                         )
                     })

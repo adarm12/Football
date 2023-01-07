@@ -1,12 +1,12 @@
 import React from "react";
 import PrintDescription from "./PrintDescription";
 
-function PrintScoreTeamHistory(props) {
+function PrintTeamScoreHistory(props) {
     //https://app.seker.live/fm1/history/2/500
     return (
         <div>
             <PrintDescription description={props.description}/>
-            <table>
+            <table className="TeamScoreHistory">
                 <td>
                     <header> Round</header>
                     {props.history.map((history) => {
@@ -90,4 +90,4 @@ function PrintScoreTeamHistory(props) {
     )
 }
 
-export default PrintScoreTeamHistory;
+export default PrintTeamScoreHistory;

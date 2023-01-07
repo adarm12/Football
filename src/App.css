@@ -1,72 +1,106 @@
-.App {
-
-}
-
-th{
-    font-size: 25px;
-}
-
-header {
-    text-align-all: center;
-    font-size: 20px;
-    margin: auto;
-    width: 150px;
-    text-align: center;
-    border-collapse: collapse;
-}
-/*div{*/
-/*    margin: auto;*/
-/*    width: 900px;*/
-/*}*/
-
 .Title {
-    font-size: 30px;
+    font-size: 50px;
     font-family: "Gabriola", "Assistant SemiBold";
     font-weight: bold;
 }
 
+div.NavLink{
+    font-size: 25px;
+}
+
+.miniTitle{
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
 
 body {
-    font-size: 15px;
-    font-family: "Gabriola", "Assistant SemiBold";
+    font-size: 25px;
+    font-family: "Assistant";
     text-align: center;
 }
 
 table {
     text-align-all: center;
-    font-size: 15px;
+    font-size: 20px;
     margin: auto;
-    width: 150px;
+    width: 200px;
     text-align: center;
     border-collapse: collapse;
     border: 1px solid black;
+    padding: 35px;
     /*box-shadow: 0 -10px 5px rgb(35, 107, 43);*/
 }
 
 
-td, tr {
-    border: 1px solid black;
-    padding: 5px;
-    width: 150px;
+th, td {
+    text-align: left;
+    padding: 8px;
+    width: 200px;
 }
+
+tr:nth-child(odd){
+    background-color: #ddefee;
+}
+
+.TeamTable{
+    width: 200px;
+    padding: 10px;
+}
+.TeamScoreHistory{
+    width: auto;
+    font-size: 15px;
+    margin-outside: 50px;
+}
+.TeamScoreHistory tr:nth-last-child(-n+3)
+{
+    background-color: #FF3333;
+}
+
+table.playersTable {
+    margin-left: 10px;
+    width: 200px;
+    text-align: center;
+    border-collapse: collapse;
+
+}
+
+/*td, tr {*/
+/*    border: 1px solid black;*/
+/*    padding: 5px;*/
+/*    width: 150px;*/
+/*}*/
 
 /*tr:hover {*/
 /*    background-color: #54a64d;*/
 /*}*/
 
 
-table.playersTable {
-   margin-left: 10px;
-    width: 150px;
+
+
+#description {
+    margin-top: 15px;
+    font-size: 20px;
+    background-color: #4ac7bc;
+    font-weight: bold;
+}
+header {
+    text-align-all: center;
+    font-size: 20px;
+    margin: auto;
+    width: 200px;
     text-align: center;
     border-collapse: collapse;
 
 }
-table.scoreTeamHistory{
-    width: 300px;
-}
 
-div.description
-{
-    background-color: cadetblue;
-}
+/*table {*/
+/*    text-align-all: center;*/
+/*    font-size: 20px;*/
+/*    margin: auto;*/
+/*    border-collapse: collapse;*/
+/*    width: 150px;*/
+/*    !*    width: 150px;*!*/
+/*    text-align: center;*/
+/*    border: 1px solid black;*/
+/*}*/

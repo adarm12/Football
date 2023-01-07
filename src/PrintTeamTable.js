@@ -5,7 +5,7 @@ function PrintTeamTable(props) {
     return (
         <div>
             <PrintDescription description = {props.description} />
-            <table className="teamTable">
+            <table className="TeamTable">
                 {props.teamList.map((team) => {
                     return (
                             <tr onClick={() => props.getPlayersAndHistory(team.id, team.name)}>

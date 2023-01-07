@@ -3,7 +3,7 @@ import axios from "axios";
 import PrintLeaguesTable from "./PrintLeaguesTable";
 import PrintPlayersTable from "./PrintPlayersTable";
 import PrintTeamTable from "./PrintTeamTable";
-import PrintScoreTeamHistory from "./PrintScoreTeamHistory";
+import PrintTeamScoreHistory from "./PrintTeamScoreHistory";
 
 
 class LeaguesHomePage extends React.Component {
@@ -145,9 +145,7 @@ class LeaguesHomePage extends React.Component {
     render() {
         return (
             <div className="Main">
-                <header style={{width: 170}}>
-                    <th>Leagues Home Page</th>
-                </header>
+                    <div className="miniTitle">Leagues Home Page</div>
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getTeam}
                                        description={this.state.leaguesDescription}/>
@@ -156,7 +154,7 @@ class LeaguesHomePage extends React.Component {
                                     description={this.state.teamsDescription}/>
                     <PrintPlayersTable players={this.state.playerList}
                                        description={this.state.playersDescription}/>
-                    <PrintScoreTeamHistory history={this.state.historyList}
+                    <PrintTeamScoreHistory history={this.state.historyList}
                                            description={this.state.historyDescription}
                                            homeScoreList={this.state.homeTeamScoreList}
                                            awayScoreList={this.state.awayTeamScoreList}

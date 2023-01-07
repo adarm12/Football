@@ -12,23 +12,6 @@ import PrintTeamTable from "./PrintTeamTable";
 
 
 class App extends React.Component {
-
-    // stateApp = {
-    //     domain: 'https://app.seker.live/fm1/',
-    //     leaguesList: [],
-    // }
-    //
-    // componentDidMount() {
-    //     this.getLeagues();
-    // }
-    //
-    // getLeagues = () => {
-    //     axios.get(this.stateApp.domain + 'leagues')
-    //         .then((response) => {
-    //             this.setState(this.stateApp.leaguesList = response.data)
-    //         });
-    // }
-
     render() {
         return (
             <div className="App">
@@ -36,10 +19,12 @@ class App extends React.Component {
                     <label> Football </label>
                 </div>
                 <BrowserRouter>
-                    <NavLink style={{margin: "30px"}} to={"/LeaguesHomePage"}>Home Page</NavLink>
-                    <NavLink style={{margin: "30px"}} to={"/LeagueResultsHistoryPage"}>League Results History</NavLink>
-                    <NavLink style={{margin: "30px"}} to={"/GeneralStatistics"}>General Statistics</NavLink>
-                    <NavLink style={{margin: "30px"}} to={"/TopScorersTable"}>Top Scorers Table</NavLink>
+                    <div className="NavLink">
+                        <NavLink style={{margin: "30px"}} to={"/LeaguesHomePage"}>Home Page</NavLink>
+                        <NavLink style={{margin: "30px"}} to={"/LeagueResultsHistoryPage"}>League Results History</NavLink>
+                        <NavLink style={{margin: "30px"}} to={"/GeneralStatistics"}>General Statistics</NavLink>
+                        <NavLink style={{margin: "30px"}} to={"/TopScorersTable"}>Top Scorers Table</NavLink>
+                    </div>
 
                     <Routes>
                         <Route path={"/LeaguesHomePage"} element={<LeaguesHomePage/>}/>

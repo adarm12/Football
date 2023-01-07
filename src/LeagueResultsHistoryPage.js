@@ -63,7 +63,8 @@ class LeagueResultsHistoryPage extends React.Component {
         for (let i = 0; i < list.length; i++) {
             if (list[i].home === true)
                 scoreList.push(1)
-            else if (list[i].home === false)
+            else
+                // if (list[i].home === false)
                 scoreList.push(0)
 
         }
@@ -113,16 +114,18 @@ class LeagueResultsHistoryPage extends React.Component {
     render() {
         return (
             <div className="Main">
-                <header style={{width: 200}}>
-                    <th>Leagues Results History</th>
-                </header>
+                <div className="miniTitle">Leagues Results History</div>
+
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getLeagueHistory}
                                        description={this.state.leaguesDescription}/>
+
                     <PrintHistoryTable historyList={this.state.historyList}
                                        homeScoreList={this.state.homeScoreList}
                                        awayScoreList={this.state.awayScoreList}
                                        description={this.state.tableDescription}/>
+
+
                 </div>
             </div>
         );

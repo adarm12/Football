@@ -29,7 +29,6 @@ class generalStatistics extends React.Component {
     }
 
     getLeagueHistory = (leagueId) => {
-
         axios.get(this.state.domain + "history/" + leagueId)
             .then((response) => {
 
