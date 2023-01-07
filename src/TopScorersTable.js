@@ -93,12 +93,13 @@ class TopScorersTable extends React.Component {
     render() {
         return (
             <div className="Main">
+                <div className="miniTitle">Top Scores Table</div>
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getLeagueHistory}
                                        description={this.state.leaguesDescription}/>
-                    {/*{this.state.topPlayersList.length}*/}
-                    <PrintTopScoreTable historyList={this.state.topPlayersList}
-                                        description={this.state.tableDescription}/>
+                    {this.state.topPlayersList.length > 0 ?
+                        <PrintTopScoreTable historyList={this.state.topPlayersList}
+                                            description={this.state.tableDescription}/> : <div></div>}
                 </div>
             </div>
         );

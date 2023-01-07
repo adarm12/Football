@@ -4,15 +4,16 @@
     font-weight: bold;
 }
 
-div.NavLink{
+div.NavLink {
     font-size: 25px;
 }
 
-.miniTitle{
+.miniTitle {
     margin-top: 10px;
     font-size: 25px;
     font-weight: bold;
 }
+
 header {
     text-align-all: center;
     font-size: 18px;
@@ -48,24 +49,26 @@ th, td {
     width: 200px;
 }
 
-tr:nth-child(odd){
+tr:nth-child(even) {
     background-color: #ddefee;
 }
-.TeamTable{
+
+.TeamTable {
     width: 200px;
     padding: 10px;
 }
-.TeamScoreHistory,.historyLeaguesTable{
+
+.TeamScoreHistory, .historyLeaguesTable, .teamTable {
     width: auto;
     font-size: 15px;
     margin-outside: 50px;
 }
-.TeamScoreHistory tr:nth-last-child(-n+3)
-{
+
+.TeamScoreHistory tr:nth-last-child(-n+3) {
     background-color: #FF3333;
 }
-tr:nth-child(0)
-{
+
+tr:nth-child(0) {
     background-color: #9bb3e0;
 }
 
@@ -75,6 +78,15 @@ table.playersTable {
     text-align: center;
     border-collapse: collapse;
 
+}
+
+.sum {
+    margin-left: 32%;
+    border: 1px solid black;
+    width: 500px;
+    font-size: 20px;
+    text-align: left;
+    padding: 10px;
 }
 
 /*tr:hover {*/

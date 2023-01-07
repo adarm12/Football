@@ -189,7 +189,7 @@ class LeaguesHomePage extends React.Component {
                                     description={this.state.teamsDescription}/>
                     <PrintPlayersTable players={this.state.playerList}
                                        description={this.state.playersDescription}/>
-                    {this.state.teamList.length > 0 ?
+                    {this.state.historyList.length > 0 ?
                         <PrintTeamScoreHistory history={this.state.historyList}
                                                description={this.state.historyDescription}
                                                homeGoalsList={this.state.homeTeamGoalsList}
