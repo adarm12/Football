@@ -27,7 +27,6 @@ class LeaguesHomePage extends React.Component {
         awayTeamScoreList: [],
     }
 
-    //https://app.seker.live/fm1/squad/2/560
     componentDidMount() {
         this.getLeagues();
     }
@@ -47,7 +46,6 @@ class LeaguesHomePage extends React.Component {
                 this.setState(this.state.teamList = response.data)
                 this.setState(this.state.teamsDescription = "These are the groups in the " + this.state.leagueName + " league:")
             })
-        // {alert(this.state.leaguesList.length)}
     }
 
     getPlayersAndHistory = (teamId, teamName) => {
@@ -73,8 +71,8 @@ class LeaguesHomePage extends React.Component {
             .then((response) => {
                 this.setState(this.state.historyList = response.data)
                 this.getNewHistoryList(response.data)
-                this.countHomeTeamGoals(response.data)
-                this.countAwayTeamGoals(response.data)
+                this.countTeamGoals(response.data, 1)
+                this.countTeamGoals(response.data, 0)
                 this.setState(this.state.historyDescription = "This is the history of - " + this.state.teamName + " team:")
             })
     }
@@ -87,65 +85,70 @@ class LeaguesHomePage extends React.Component {
         }
         this.getTeamsScore(list)
     }
-    //https://app.seker.live/fm1/squad/2/560
-
 
     getTeamsScore = (list) => {
         let scoreList = [];
         for (let i = 0; i < list.length; i++) {
             if (list[i].home === true)
                 scoreList.push(1)
-            else if (list[i].home === false)
+            else
                 scoreList.push(0)
 
         }
         this.setState(this.state.scoreList = scoreList)
-        // alert(this.state.scoreList[1])
-        // alert(this.state.scoreList.length)
     }
 
-    countHomeTeamGoals = (history) => {
+    countTeamGoals = (goalsArray, team) => {
         let score = [];
         let counter = 0;
-        for (let i = 0; i < history.length; i++) {
+        for (let i = 0; i < goalsArray.length; i++) {
             let homeScore = 0;
-            for (let j = 0; j < history[i].goals.length; j++) {
-                if (this.state.scoreList[counter] === 1) {
+            for (let j = 0; j < goalsArray[i].goals.length; j++) {
+                counter++
+                if (this.state.scoreList[counter] === team) {
                     homeScore++
-                    counter++
-                } else {
-                    counter++
                 }
+
+                //     counter++
+                // } else {
+                //     counter++
+                // }
             }
+
             score.push(homeScore)
         }
-        this.setState(this.state.homeTeamScoreList = score)
+
+        if (team === 1) {
+            this.setState(this.state.homeTeamScoreList = score)
+        } else {
+            this.setState(this.state.awayTeamScoreList = score)
+        }
     }
 
-    countAwayTeamGoals = (history) => {
-        let score = [];
-        let counter = 0;
-        for (let i = 0; i < history.length; i++) {
-            let awayScore = 0;
-            for (let j = 0; j < history[i].goals.length; j++) {
-                if (this.state.scoreList[counter] === 0) {
-                    awayScore++
-                    counter++
-                } else {
-                    counter++
-                }
-            }
-            score.push(awayScore)
-        }
-        this.setState(this.state.awayTeamScoreList = score)
-        // alert(this.state.awayScoreList[6])
-        // alert(this.state.awayScoreList.length)
-    }
+    // countAwayTeamGoals = (history) => {
+    //     let score = [];
+    //     let counter = 0;
+    //     for (let i = 0; i < history.length; i++) {
+    //         let awayScore = 0;
+    //         for (let j = 0; j < history[i].goals.length; j++) {
+    //             if (this.state.scoreList[counter] === 0) {
+    //                 awayScore++
+    //                 counter++
+    //             } else {
+    //                 counter++
+    //             }
+    //         }
+    //         score.push(awayScore)
+    //     }
+    //     this.setState(this.state.awayTeamScoreList = score)
+    //     // alert(this.state.awayScoreList[6])
+    //     // alert(this.state.awayScoreList.length)
+    // }
 
     render() {
         return (
             <div className="Main">
-                    <div className="miniTitle">Leagues Home Page</div>
+                <div className="miniTitle">Leagues Home Page</div>
                 <div>
                     <PrintLeaguesTable leaguesList={this.state.leaguesList} getTeams={this.getTeam}
                                        description={this.state.leaguesDescription}/>
@@ -154,11 +157,13 @@ class LeaguesHomePage extends React.Component {
                                     description={this.state.teamsDescription}/>
                     <PrintPlayersTable players={this.state.playerList}
                                        description={this.state.playersDescription}/>
-                    <PrintTeamScoreHistory history={this.state.historyList}
-                                           description={this.state.historyDescription}
-                                           homeScoreList={this.state.homeTeamScoreList}
-                                           awayScoreList={this.state.awayTeamScoreList}
-                    />
+                    {this.state.teamList.length > 0 ?
+                        <PrintTeamScoreHistory history={this.state.historyList}
+                                               description={this.state.historyDescription}
+                                               homeScoreList={this.state.homeTeamScoreList}
+                                               awayScoreList={this.state.awayTeamScoreList}
+                        /> : <div></div>}
+
                 </div>
             </div>
         );

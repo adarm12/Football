@@ -2,8 +2,7 @@ import React from "react";
 import PrintDescription from "./PrintDescription";
 
 function PrintLeaguesTable(props) {
-    return (
-
+    return(
         <div>
             <PrintDescription description={props.description}/>
             <table className="leaguesTable">
@@ -13,6 +12,7 @@ function PrintLeaguesTable(props) {
                             {league.name}
                         </tr>
                     )
+
                 })
                 }
             </table>
