@@ -118,9 +118,7 @@ class generalStatistics extends React.Component {
     render() {
         return (
             <div>
-                <header>
-                    <th> General statistics</th>
-                </header>
+                <div className="miniTitle">General statistics</div>
                 {this.state.leaguesList.map((league) => {
                     return (
                         <table onClick={() => {
@@ -129,10 +127,9 @@ class generalStatistics extends React.Component {
                     )
                 })}
 
-
                 {
                     this.state.generalStats.flag == true ?
-                        <div className="sum" >
+                        <div className="sum">
                             <div>goals scored in the first half: {this.state.generalStats.firstHalfGoals}</div>
                             <div>goals scored in the second half: {this.state.generalStats.secondHalfGoals}</div>
                             <div>earliest goal scored at
