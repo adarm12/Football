@@ -10,9 +10,7 @@ class generalStatistics extends React.Component {
         leagueHistory: [],
         generalStats: {
             flag: false
-
         }
-
     }
 
     componentDidMount() {
@@ -134,7 +132,7 @@ class generalStatistics extends React.Component {
 
                 {
                     this.state.generalStats.flag == true ?
-                        <table style={{width:300}}>
+                        <div className="sum" >
                             <div>goals scored in the first half: {this.state.generalStats.firstHalfGoals}</div>
                             <div>goals scored in the second half: {this.state.generalStats.secondHalfGoals}</div>
                             <div>earliest goal scored at
@@ -143,7 +141,7 @@ class generalStatistics extends React.Component {
                                 minute: {this.state.generalStats.latestGoal.minute} by {this.state.generalStats.latestGoal.scorer.firstName} {this.state.generalStats.latestGoal.scorer.lastName}</div>
                             <div>most goals were in round: {this.state.generalStats.mostGoalsRound}</div>
                             <div>less goals were in round: {this.state.generalStats.lessGoalsRound}</div>
-                        </table>
+                        </div>
                         :
                         <div></div>
                 }
