@@ -85,6 +85,19 @@ function PrintTeamScoreHistory(props) {
                     })
                     }
                 </td>
+                <td>
+                    <header>Difference</header>
+                    {props.teamDifference.map((teamDifference) => {
+                        return (
+                            <tr>
+                                <td>
+                                    {teamDifference}
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
+                </td>
             </table>
         </div>
     )
