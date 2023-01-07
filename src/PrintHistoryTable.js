@@ -3,7 +3,9 @@ import PrintDescription from "./PrintDescription";
 
 function PrintHistoryTable(props) {
     return (
-        <div >
+        <div>
+
+
             <PrintDescription description={props.description}/>
             <table className="historyLeaguesTable">
                 <td>
