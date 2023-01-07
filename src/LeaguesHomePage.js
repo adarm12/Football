@@ -102,20 +102,15 @@ class LeaguesHomePage extends React.Component {
         let score = [];
         let counter = 0;
         for (let i = 0; i < goalsArray.length; i++) {
-            let homeScore = 0;
+            let goalsCounter = 0;
             for (let j = 0; j < goalsArray[i].goals.length; j++) {
                 counter++
                 if (this.state.scoreList[counter] === team) {
-                    homeScore++
+                    goalsCounter++
                 }
-
-                //     counter++
-                // } else {
-                //     counter++
-                // }
             }
 
-            score.push(homeScore)
+            score.push(goalsCounter)
         }
 
         if (team === 1) {
