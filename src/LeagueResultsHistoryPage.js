@@ -15,6 +15,8 @@ class LeagueResultsHistoryPage extends React.Component {
         historyList: [],
         tableDescription: "",
         scoreList: [],
+        homeGoalsList: [],
+        awayGoalsList: [],
         homeScoreList: [],
         awayScoreList: [],
         differenceList: [],
@@ -43,6 +45,7 @@ class LeagueResultsHistoryPage extends React.Component {
                 this.getNewHistoryList(response.data)
                 this.countHomeGoals(response.data)
                 this.countAwayGoals(response.data)
+                this.countTeamScore()
                 this.differenceCounter()
                 this.setState(this.state.tableDescription = "These are the" + this.state.leagueName + " league history results")
             })
@@ -87,7 +90,7 @@ class LeagueResultsHistoryPage extends React.Component {
             }
             score.push(homeScore)
         }
-        this.setState(this.state.homeScoreList = score)
+        this.setState(this.state.homeGoalsList = score)
     }
 
     countAwayGoals = (history) => {
@@ -105,16 +108,37 @@ class LeagueResultsHistoryPage extends React.Component {
             }
             score.push(awayScore)
         }
-        this.setState(this.state.awayScoreList = score)
+        this.setState(this.state.awayGoalsList = score)
         // alert(this.state.awayScoreList[6])
         // alert(this.state.awayScoreList.length)
     }
 
+    countTeamScore = () => {
+        let homeScore = [];
+        let awayScore = [];
+        for (let i = 0; i < this.state.homeGoalsList.length; i++) {
+            if (this.state.homeGoalsList[i] === this.state.awayGoalsList[i]) {
+                homeScore.push(1)
+                awayScore.push(1)
+            } else if (this.state.homeGoalsList[i] > this.state.awayGoalsList[i]) {
+                homeScore.push(3)
+                awayScore.push(0)
+            } else if (this.state.homeGoalsList[i] < this.state.awayGoalsList[i]) {
+                homeScore.push(0)
+                awayScore.push(3)
+            }
+        }
+        this.setState(this.state.homeScoreList = homeScore)
+        // alert(this.state.homeTeamScoreList.length)
+        this.setState(this.state.awayScoreList = awayScore)
+    }
+
+
     differenceCounter = () => {
         let difference = [];
         let value = 0;
-        for (let i = 0; i < this.state.homeScoreList.length; i++) {
-            value = this.state.homeScoreList[i] - this.state.awayScoreList[i]
+        for (let i = 0; i < this.state.homeGoalsList.length; i++) {
+            value = this.state.homeGoalsList[i] - this.state.awayGoalsList[i]
             difference.push(value)
         }
         this.setState(this.state.differenceList = difference)
@@ -132,6 +156,8 @@ class LeagueResultsHistoryPage extends React.Component {
                                        description={this.state.leaguesDescription}/>
                     {this.state.historyList.length > 0 ?
                         <PrintHistoryTable historyList={this.state.historyList}
+                                           homeGoalsList={this.state.homeGoalsList}
+                                           awayGoalsList={this.state.awayGoalsList}
                                            homeScoreList={this.state.homeScoreList}
                                            awayScoreList={this.state.awayScoreList}
                                            difference={this.state.differenceList}

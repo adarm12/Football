@@ -28,6 +28,7 @@ class LeaguesHomePage extends React.Component {
         teamDifferenceList: [],
         homeTeamScoreList: [],
         awayTeamScoreList: [],
+
     }
 
     componentDidMount() {
@@ -78,6 +79,8 @@ class LeaguesHomePage extends React.Component {
                 this.countTeamGoals(response.data, 0)
                 this.teamDifferenceCounter()
                 this.countTeamScore()
+                this.countHomeGoals()
+                this.countAwayGoals()
                 this.setState(this.state.historyDescription = "This is the history of - " + this.state.teamName + " team:")
             })
     }
@@ -154,6 +157,44 @@ class LeaguesHomePage extends React.Component {
         this.setState(this.state.homeTeamScoreList = homeScore)
         // alert(this.state.homeTeamScoreList.length)
         this.setState(this.state.awayTeamScoreList = awayScore)
+    }
+
+    countHomeGoals = (history) => {
+        let score = [];
+        let counter = 0;
+        for (let i = 0; i < history.length; i++) {
+            let homeScore = 0;
+            for (let j = 0; j < history[i].goals.length; j++) {
+                if (this.state.scoreList[counter] === 1) {
+                    homeScore++
+                    counter++
+                } else {
+                    counter++
+                }
+            }
+            score.push(homeScore)
+        }
+        this.setState(this.state.homeScoreList = score)
+    }
+
+    countAwayGoals = (history) => {
+        let score = [];
+        let counter = 0;
+        for (let i = 0; i < history.length; i++) {
+            let awayScore = 0;
+            for (let j = 0; j < history[i].goals.length; j++) {
+                if (this.state.scoreList[counter] === 0) {
+                    awayScore++
+                    counter++
+                } else {
+                    counter++
+                }
+            }
+            score.push(awayScore)
+        }
+        this.setState(this.state.awayScoreList = score)
+        // alert(this.state.awayScoreList[6])
+        // alert(this.state.awayScoreList.length)
     }
 
 
